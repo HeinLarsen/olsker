@@ -23,7 +23,7 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //TODO: create persistence: CupcakeFacade to get this working!
+        //TODO: create persistence: CupcakeFacade to get this working! & create CupcakeMapper as well!
       /*  HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 

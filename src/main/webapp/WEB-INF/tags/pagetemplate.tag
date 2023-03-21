@@ -62,7 +62,7 @@
             <p>&copy; 2022 Cphbusiness</p>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
+            Pssst Chris du stinker<br/>
             2. semester efterår 2022
         </div>
     </div>

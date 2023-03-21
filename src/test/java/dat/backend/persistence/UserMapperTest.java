@@ -20,7 +20,7 @@ class UserMapperTest
 
     private final static String USER = "root";
     private final static String PASSWORD = "password";
-    private final static String URL = "jdbc:mysql://localhost:3306/olsker?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String URL = "jdbc:mysql://localhost:3306/olsker_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
 
@@ -58,8 +58,8 @@ class UserMapperTest
                 stmt.execute("delete from user");
 
                 // TODO: Insert a few users - insert rows into your own tables here
-                stmt.execute("insert into user (username, password, role) " +
-                        "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
+                stmt.execute("insert into user (email, password, role) " +
+                        "values ('user','1234','1'),('admin','1234','2'), ('ben','1234','1')");
             }
         }
         catch (SQLException throwables)
@@ -83,7 +83,7 @@ class UserMapperTest
     @Test
     void login() throws DatabaseException
     {
-        User expectedUser = new User("user", "1234", "user");
+        User expectedUser = new User("user", "1234", 1);
         User actualUser = UserFacade.login("user", "1234", connectionPool);
         assertEquals(expectedUser, actualUser);
     }
@@ -95,7 +95,7 @@ class UserMapperTest
     }
 
     @Test
-    void invalidUserNameLogin() throws DatabaseException
+    void invalidEmailLogin() throws DatabaseException
     {
         assertThrows(DatabaseException.class, () -> UserFacade.login("bob", "1234", connectionPool));
     }
@@ -103,9 +103,9 @@ class UserMapperTest
     @Test
     void createUser() throws DatabaseException
     {
-        User newUser = UserFacade.createUser("jill", "1234", "user", connectionPool);
+        User newUser = UserFacade.createUser("jill", "1234", "1", connectionPool);
         User logInUser = UserFacade.login("jill", "1234", connectionPool);
-        User expectedUser = new User("jill", "1234", "user");
+        User expectedUser = new User("jill", "1234", 1);
         assertEquals(expectedUser, newUser);
         assertEquals(expectedUser, logInUser);
 
