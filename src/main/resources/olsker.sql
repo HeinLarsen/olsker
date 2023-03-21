@@ -58,3 +58,7 @@ create table `order_item` (
   foreign key (cupcake_bottom_id) references cupcake_bottom(id),
   primary key (id)
 );
+
+CREATE DATABASE  IF NOT EXISTS `olsker_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `olsker_test`;
+CREATE TABLE startcode_test.user LIKE olsker.user;
