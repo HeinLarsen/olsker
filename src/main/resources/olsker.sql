@@ -1,5 +1,3 @@
--- WIP
-
 create database if not exists `olsker`;
 use `olsker`;
 
@@ -52,6 +50,8 @@ create table `order_item` (
   `order_id` int not null,
   `cupcake_top_id` int not null,
   `cupcake_bottom_id` int not null,
+  `cupcake_top_price` float not null,
+  `cupcake_bottom_price` float not null,
   `quantity` int not null,
   foreign key (order_id) references `order`(id),
   foreign key (cupcake_top_id) references cupcake_top(id),
