@@ -10,6 +10,20 @@ th, td {
     border: 1px solid silver;
     padding:15px;
 }
+*{
+background: aqua;
+}
 
 
 
+
+
+
+
+/* carousel */
+.top{
+    margin: -10px;
+    position: absolute;
+    z-index: 0;
+    width: 1000px;
+}
