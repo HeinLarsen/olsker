@@ -6,7 +6,7 @@ public class Cupcake {
     private Bottom bottom;
     private int quantity;
 
-    public Cupcake(Top top, Bottom bottom, int quantity) {
+    public Cupcake(Top top, Bottom bottom) {
         this.top = top;
         this.bottom = bottom;
         this.quantity = quantity;
