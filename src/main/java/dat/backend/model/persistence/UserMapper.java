@@ -4,6 +4,7 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +70,35 @@ class UserMapper
         return user;
     }
 
-    static User updatebalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
+    static ArrayList<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        ArrayList<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM user";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    int role = rs.getInt("role");
+                    int balance = rs.getInt("balance");
+                    User user = new User(id, email, password, role, balance);
+                    users.add(user);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not get all users from database");
+        }
+        return users;
+    }
+
+    static User updateBalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user = null;
@@ -78,7 +107,7 @@ class UserMapper
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, amount);
+                ps.setFloat(1, amount);
                 ps.setInt(2, id);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
@@ -96,4 +125,25 @@ class UserMapper
         return user;
     }
 
+    public static User getUserById(int id, ConnectionPool connectionPool) {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        User user = null;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    int role = rs.getInt("role");
+                    int balance = rs.getInt("balance");
+                    user = new User(id, email, password, role, balance);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
 }

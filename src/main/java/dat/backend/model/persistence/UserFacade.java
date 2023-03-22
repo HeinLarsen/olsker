@@ -3,6 +3,7 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
+import java.awt.dnd.DropTarget;
 import java.util.ArrayList;
 
 public class UserFacade
@@ -17,13 +18,17 @@ public class UserFacade
         return UserMapper.createUser(email, password, role, balance, connectionPool);
     }
 
-    public static User updatebalance(int id, int amount, ConnectionPool connectionPool)throws DatabaseException
+    public static User updateBalance(int id, int amount, ConnectionPool connectionPool)throws DatabaseException
     {
-         return UserMapper.updatebalance(id, amount, connectionPool);
+         return UserMapper.updateBalance(id, amount, connectionPool);
     }
 
 
+    public static ArrayList<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.getAllUsers(connectionPool);
+    }
 
-
-
+    public static User getUserById(int id, ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.getUserById(id, connectionPool);
+    }
 }
