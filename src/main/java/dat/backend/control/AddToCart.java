@@ -15,7 +15,14 @@ import java.io.IOException;
 
 @WebServlet(name = "AddToCart", value = "/addtocart")
 public class AddToCart extends HttpServlet {
-    private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    private ConnectionPool connectionPool;
+
+    @Override
+    public void init() throws ServletException
+    {
+        this.connectionPool = ApplicationStart.getConnectionPool();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
