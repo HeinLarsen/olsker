@@ -10,8 +10,13 @@ th, td {
     border: 1px solid silver;
     padding:15px;
 }
-*{
-background: aqua;
+
+.carousel-inner{
+    margin-top: -10px;
+    margin-left: 20%;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    background: aqua;
 }
 
 

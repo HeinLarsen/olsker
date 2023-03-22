@@ -25,7 +25,7 @@
                     href="login.jsp">Login</a></p>
 
             <!-- slideshow carousel toppings-->
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide" data-interval="0">
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -79,9 +79,8 @@
 
 
             <!-- slideshow carousel Bottom-->
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleControls2" class="carousel slide" data-interval="0">
                 <div class="carousel-inner">
-
                     <div class="carousel-item active">
                         <img class="d-block w-50" src="./images/AlmondBottom.JPG" alt="First slide">
                     </div>
@@ -92,24 +91,28 @@
 
                     <div class="carousel-item">
                         <img class="d-block w-50" src="./images/NutmegBottom.JPG" alt="Third slide">
+
                     </div>
 
-                <div class="carousel-item active">
-                    <img class="d-block w-50" src="./images/PistacioBottom.JPG" alt="First slide">
+                    <div class="carousel-item">
+                        <img class="d-block w-50" src="./images/PistacioBottom.JPG" alt="Third slide">
+
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-50" src="./images/VanillaBottom.JPG" alt="Third slide">
+                    </div>
+
                 </div>
 
-                <div class="carousel-item active">
-                    <img class="d-block w-50" src="./images/VanillaBottom.JPG" alt="First slide">
-                </div>
-                </div>
 
 
 
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+
+                <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
