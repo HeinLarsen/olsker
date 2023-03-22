@@ -7,15 +7,15 @@ public class User
     private String email;
     private String password;
     private int role;
-    private Account account;
+    private int balance;
 
 
-    public User(String email, String password, int role)
+    public User(String email, String password, int role, int balance)
     {
         this.email = email;
         this.password = password;
         this.role = role;
-        account = new Account();
+        this.balance = balance;
     }
 
     public String getEmail()
@@ -46,6 +46,11 @@ public class User
     public void setRole(int role)
     {
         this.role = role;
+    }
+
+    public int getBalance() {
+        return balance;
+
     }
 
     @Override
