@@ -7,12 +7,15 @@ public class User
     private String email;
     private String password;
     private int role;
+    private Account account;
+
 
     public User(String email, String password, int role)
     {
         this.email = email;
         this.password = password;
         this.role = role;
+        account = new Account();
     }
 
     public String getEmail()
