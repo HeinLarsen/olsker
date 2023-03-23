@@ -21,7 +21,7 @@ public class UpdateBalance extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        int balance = Integer.parseInt(request.getAttribute("balance"));
+        int balance = Integer.parseInt((String) request.getAttribute("balance"));
 
     }
 }

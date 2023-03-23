@@ -7,6 +7,7 @@ public class User
     private String email;
     private String password;
     private int role;
+    private int balance;
 
     public User(String email, String password, int role)
     {
