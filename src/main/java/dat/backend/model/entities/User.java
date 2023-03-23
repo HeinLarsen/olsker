@@ -46,10 +46,7 @@ public class User
         this.role = role;
     }
 
-    public void setAccount(Account account)
-    {
-        this.account = account;
-    }
+
 
     @Override
     public boolean equals(Object o)
