@@ -6,10 +6,6 @@ import dat.backend.model.exceptions.DatabaseException;
 
 import java.util.ArrayList;
 
-import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Top;
-import dat.backend.model.exceptions.DatabaseException;
-
 public class CupcakeFacade {
 
 

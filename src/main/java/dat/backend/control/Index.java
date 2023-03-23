@@ -2,8 +2,6 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Cupcake;
-import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.entities.Top;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
@@ -20,7 +18,7 @@ public class Index extends HttpServlet {
     private ConnectionPool connectionPool;
 
     @Override
-    public void init() throws ServletException{
+    public void init() throws ServletException {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
