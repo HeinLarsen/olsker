@@ -25,7 +25,7 @@ public class ShowOrders extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         if(u != null && u.getRole() == 2){
-            List<Order_Item_View> orderItemViewList = Orderfacade.ListAllOrdersFromView(connectionPool);
+            List<Order> orderItemViewList = Orderfacade.ShowOrders(connectionPool);
             request.setAttribute("orderListView", orderItemViewList);
             request.getRequestDispatcher("WEB-INF/showorders.jsp").forward(request, response);
         } else {

@@ -28,9 +28,7 @@ public class Cupcake {
         return top.getPrice() + bottom.getPrice();
     }
 
-    public String getName() {
-        return top.getName() + " " + bottom.getName();
-    }
+
 
 
 }
