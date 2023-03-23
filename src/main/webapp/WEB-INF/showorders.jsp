@@ -38,9 +38,7 @@
                             ${items.quantity} </p>
                         </c:forEach>
                     </td>
-                    <td>
 
-                    </td>
 
             </tr>
                 </c:forEach>

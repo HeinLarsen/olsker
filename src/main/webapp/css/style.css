@@ -2,18 +2,51 @@
 
 table {
     border-collapse: collapse;
-    border: 1px solid silver;
+    border: 3px black !important;
     padding:15px;
 }
 
-th, td {
-    border: 1px solid silver;
+
+
+
+td {
+    border-collapse: collapse;
     padding:15px;
 }
-
-tr:nth-child(even) {
-    background-color: #D6EEEE;
+tr{
+    border-collapse: collapse;
 }
+
+th {
+    background-collapse : collapse;
+    color: black;
+    position: center;
+}
+thead {
+    background-color: bisque;
+}
+
+tr{
+    color: black !important;
+}
+body{
+    background-color: bisque !important;
+}
+header{
+    background-color: bisque !important;
+}
+
+div.container{
+
+    background-color: bisque !important;
+}
+
+nav.navbar{
+    background-color: bisque !important;
+}
+
+
+
 
 
 

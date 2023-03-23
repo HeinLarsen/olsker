@@ -56,12 +56,12 @@
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            Rønnevej 56<br/>
+            3770 Allinge
         </div>
         <div class="col">
             <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            <p>&copy; Olsker Cupcakes</p>
         </div>
         <div class="col">
             Pssst Chris du stinker<br/>
