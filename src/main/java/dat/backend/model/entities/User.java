@@ -45,9 +45,9 @@ public class User
         this.role = role;
     }
 
-    public void setAccount(Account account)
-    {
-        this.account = account;
+    public int getBalance() {
+        return balance;
+
     }
 
     @Override
