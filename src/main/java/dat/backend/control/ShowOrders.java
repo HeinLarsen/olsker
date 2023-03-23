@@ -1,10 +1,7 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Order;
-import dat.backend.model.entities.OrderItem;
-import dat.backend.model.entities.ShoppingCart;
-import dat.backend.model.entities.User;
+import dat.backend.model.entities.*;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.Orderfacade;
 
@@ -28,8 +25,8 @@ public class ShowOrders extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         if(u != null && u.getRole() == 2){
-            List<Order> orderList = Orderfacade.ShowOrders(connectionPool);
-            request.setAttribute("orderList", orderList);
+            List<Order_Item_View> orderItemViewList = Orderfacade.ListAllOrdersFromView(connectionPool);
+            request.setAttribute("orderListView", orderItemViewList);
             request.getRequestDispatcher("WEB-INF/showorders.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
@@ -42,7 +39,7 @@ public class ShowOrders extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        OrderItem orderItem = (OrderItem) session.getAttribute("orderitem");
+        Order_Item_View order_item_view = (Order_Item_View) session.getAttribute("order_item_view");
 
 
     }

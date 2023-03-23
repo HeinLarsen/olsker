@@ -19,25 +19,20 @@
             <thead>
             <tr>
                 <th>Order ID</th>
-                <th>User ID</th>
-                <th>Order Items</th>
+                <th>User</th>
+                <th>Cupcake type</th>
+                <th>Total price</th>
+                <th>Quantity</th>
 
             </tr>
 
-                <c:forEach items="${requestScope.orderList}" var="order">
+                <c:forEach items="${requestScope.orderListView}" var="order">
             <tr>
-                <td>
-                    ${order.id}
-                </td>
-                    <td>
-                        ${order.user_id}
-                    </td>
-                    <td>
-                        <c:forEach items="${order.orderItemsList}" var="items">
-                            <p>${items.cupcake_bottom_id} ${items.cupcake_top_id} ${items.cupcake_bottom_price} ${items.cupcake_top_price}
-                            ${items.quantity} </p>
-                        </c:forEach>
-                    </td>
+                <td>${order.order_id}</td>
+                    <td>${order.email}</td>
+                <td>${order.cupcake_type}</td>
+                <td>${order.total_price * order.quantity}</td>
+                <td>${order.quantity}</td>
 
 
             </tr>

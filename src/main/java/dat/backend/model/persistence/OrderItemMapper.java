@@ -1,6 +1,7 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.OrderItem;
+import dat.backend.model.entities.Order_Item_View;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OderItemMapper {
+public class OrderItemMapper {
 
     public static List<OrderItem> GetAllItems(ConnectionPool connectionpool){
         String sql = "SELECT * FROM order_item";
@@ -33,5 +34,27 @@ public class OderItemMapper {
             ex.printStackTrace();
         }
         return orderItemList;
+    }
+
+    public static List<Order_Item_View> GetAllItemsFromView(ConnectionPool connectionPool){
+        String sql = "SELECT * FROM order_item_view";
+        List<Order_Item_View> orderItemViewList = new ArrayList<>();
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    int order_id = rs.getInt("order_id");
+                    String email = rs.getString("email");
+                    String cupcake_type = rs.getString("cupcake_type");
+                    float total_price = rs.getFloat("total_price");
+                    int quantity = rs.getInt("quantity");
+                    Order_Item_View order_item_view = new Order_Item_View(order_id, email, cupcake_type, total_price, quantity);
+                    orderItemViewList.add(order_item_view);
+                }
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return orderItemViewList;
     }
 }

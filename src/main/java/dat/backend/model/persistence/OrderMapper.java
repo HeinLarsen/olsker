@@ -2,6 +2,7 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.OrderItem;
+import dat.backend.model.entities.Order_Item_View;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ public class OrderMapper {
         } catch (SQLException ex){
             ex.printStackTrace();
         }
-        List<OrderItem> orderItemList = OderItemMapper.GetAllItems(connectionPool);
+        List<Order_Item_View> orderItemListView = OrderItemMapper.GetAllItemsFromView(connectionPool);
        for(Order o : orderList){
-           for(OrderItem oi : orderItemList){
+           for(Order_Item_View oi : orderItemListView){
                if(o.getId() == oi.getOrder_id()){
                    o.addToOrderList(oi);
                }

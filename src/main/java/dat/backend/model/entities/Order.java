@@ -1,12 +1,11 @@
 package dat.backend.model.entities;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<OrderItem> orderItemsList = new ArrayList<>();
+    private List<Order_Item_View> orderItemsList = new ArrayList<>();
     private int id;
     private int user_id;
     private Timestamp created;
@@ -28,12 +27,12 @@ public class Order {
     public Timestamp getCreated() {
         return created;
     }
-    public void addToOrderList(OrderItem orderItem){
-        orderItemsList.add(orderItem);
+    public void addToOrderList(Order_Item_View order_item_view){
+        orderItemsList.add(order_item_view);
 
     }
 
-    public List<OrderItem> getOrderItemsList() {
+    public List<Order_Item_View> getOrderItemsList() {
         return orderItemsList;
     }
 }
