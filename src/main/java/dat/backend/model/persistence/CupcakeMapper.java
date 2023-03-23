@@ -1,38 +1,64 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Cupcake;
 import dat.backend.model.entities.Top;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CupcakeMapper {
-    static List<Cupcake> getAllCupcakes(ConnectionPool connectionPool) throws DatabaseException
-    {
 
-        String sql = "SELECT * FROM olsker.order_item;";
+    static ArrayList<Top> getTopById(int topId, ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Cupcake> cupcakeList = new ArrayList<>();
+        String sql = "SELECT * FROM cupcake_top";
 
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        ArrayList<Top> cupcakeTop = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, topId);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next())
-                {
-                    int cupcakeId = rs.getInt("id");
-                    Top cupcakeTop = rs.getString("cupcake_top");
-                    Bottom cupcakeBottom = rs.getString("cupcake_bottom");
 
-                    Cupcake newCupcake = new Cupcake(cupcakeId, cupcakeTop, cupcakeBottom);
-                    cupcakeList.add(newCupcake);
+                while(rs.next()) {
+                    int cupcakeId = rs.getInt("id");
+                    String cupcakeName =rs.getString("name");
+                    double cupcakePrice = rs.getDouble("price");
+                    Top newCupcake = new Top(cupcakeId, cupcakeName, cupcakePrice);
+                    cupcakeTop.add(newCupcake);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return cupcakeTop;
     }
+
+    static ArrayList<Bottom> getBottomById(int bottomId, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "SELECT * FROM cupcake_bottom ";
+
+        ArrayList<Bottom> cupcakeBottom = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, bottomId);
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()) {
+                    int cupcakeId = rs.getInt("id");
+                    String cupcakeName =rs.getString("name");
+                    double cupcakePrice = rs.getDouble("price");
+                    Bottom newCupcake = new Bottom(cupcakeId, cupcakeName, cupcakePrice);
+                    cupcakeBottom.add(newCupcake);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cupcakeBottom;
+    }
+}
+
+
+
