@@ -22,6 +22,7 @@
                 <td>${user.id}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
+                <td>${user.balance}</td>
                 <td>
                     <a href="balance?id=${user.id}" class="btn btn-primary">Opdater balance</a>
                 </td>
