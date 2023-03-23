@@ -11,6 +11,10 @@ th, td {
     padding:15px;
 }
 
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
 .carousel-inner{
     margin-top: -10px;
     margin-left: 20%;
@@ -23,12 +27,3 @@ th, td {
 
 
 
-
-
-/* carousel */
-.top{
-    margin: -10px;
-    position: absolute;
-    z-index: 0;
-    width: 1000px;
-}
