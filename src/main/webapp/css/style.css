@@ -11,5 +11,24 @@ th, td {
     padding:15px;
 }
 
+.carousel-inner{
+    margin-top: -10px;
+    margin-left: 20%;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    background: aqua;
+}
 
 
+
+
+
+
+
+/* carousel */
+.top{
+    margin: -10px;
+    position: absolute;
+    z-index: 0;
+    width: 1000px;
+}
