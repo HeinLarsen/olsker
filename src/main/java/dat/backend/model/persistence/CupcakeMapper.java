@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CupcakeMapper {
 
-    static ArrayList<Top> getTopById(int topId, ConnectionPool connectionPool) throws DatabaseException {
+    static ArrayList<Top> getTopById(ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "SELECT * FROM cupcake_top";
 
@@ -17,12 +17,11 @@ public class CupcakeMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, topId);
                 ResultSet rs = ps.executeQuery();
 
                 while(rs.next()) {
                     int cupcakeId = rs.getInt("id");
-                    String cupcakeName =rs.getString("name");
+                    String cupcakeName =rs.getString("topping");
                     double cupcakePrice = rs.getDouble("price");
                     Top newCupcake = new Top(cupcakeId, cupcakeName, cupcakePrice);
                     cupcakeTop.add(newCupcake);
@@ -34,7 +33,7 @@ public class CupcakeMapper {
         return cupcakeTop;
     }
 
-    static ArrayList<Bottom> getBottomById(int bottomId, ConnectionPool connectionPool) throws DatabaseException {
+    static ArrayList<Bottom> getBottomById(ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "SELECT * FROM cupcake_bottom ";
 
@@ -42,12 +41,11 @@ public class CupcakeMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, bottomId);
                 ResultSet rs = ps.executeQuery();
 
                 while(rs.next()) {
                     int cupcakeId = rs.getInt("id");
-                    String cupcakeName =rs.getString("name");
+                    String cupcakeName =rs.getString("bottom");
                     double cupcakePrice = rs.getDouble("price");
                     Bottom newCupcake = new Bottom(cupcakeId, cupcakeName, cupcakePrice);
                     cupcakeBottom.add(newCupcake);

@@ -35,15 +35,16 @@ public class AddToCart extends HttpServlet {
         int bottomId = Integer.parseInt(request.getParameter("bottomId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        ArrayList<Top> top = null;
+        ArrayList<Top> top = new ArrayList<>();
         try {
-            top = CupcakeFacade.getTopById(topId, connectionPool);
+            top = CupcakeFacade.getTopById(connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-        ArrayList<Bottom> bottom = null;
+
+        ArrayList<Bottom> bottom = new ArrayList<>();
         try {
-            bottom = CupcakeFacade.getBottomById(bottomId, connectionPool);
+            bottom = CupcakeFacade.getBottomById(connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
@@ -56,4 +57,6 @@ public class AddToCart extends HttpServlet {
 
 
     }
+
+
 }
