@@ -15,6 +15,7 @@
             <th>id</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Balance</th>
             <th>Actions</th>
         </tr>
         <c:forEach items="${requestScope.users}" var="user">
