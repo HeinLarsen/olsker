@@ -15,7 +15,7 @@
         Order List
     </jsp:attribute>
     <jsp:body>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
                 <th>Order ID</th>

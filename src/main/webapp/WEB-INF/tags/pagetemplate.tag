@@ -32,8 +32,12 @@
                     <c:if test="${sessionScope.user.role == 2}">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Items</a>
                     </c:if>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 1</a>
+
+                    <c:if test="${sessionScope.user.role == 1}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 1</a>
+                    </c:if>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
                     <pa>${sessionScope.user.email}.</pa>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
