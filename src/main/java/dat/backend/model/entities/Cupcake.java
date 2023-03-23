@@ -23,14 +23,4 @@ public class Cupcake {
     public int getQuantity() {
         return quantity;
     }
-
-    public double getPrice() {
-        return top.getPrice() + bottom.getPrice();
-    }
-
-    public String getName() {
-        return top.getName() + " " + bottom.getName();
-    }
-
-
 }

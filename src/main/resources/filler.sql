@@ -29,4 +29,3 @@ insert into cupcake_bottom (bottom, price)
         ('Pistachio', 6.00),
         ('Almond', 7.00);
 
-
