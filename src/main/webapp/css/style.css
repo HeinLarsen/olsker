@@ -16,7 +16,7 @@ tr:nth-child(even) {
 }
 
 .carousel-inner{
-    margin-top: -10px;
+    margin-top: -20px;
     margin-left: 20%;
 }
 .carousel-control-next-icon, .carousel-control-prev-icon{
