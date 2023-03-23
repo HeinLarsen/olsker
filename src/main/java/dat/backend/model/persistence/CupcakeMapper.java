@@ -7,6 +7,15 @@ import dat.backend.model.exceptions.DatabaseException;
 import java.sql.*;
 import java.util.ArrayList;
 
+import dat.backend.model.entities.Bottom;
+import dat.backend.model.entities.Top;
+import dat.backend.model.exceptions.DatabaseException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class CupcakeMapper {
 
     static ArrayList<Top> getTopById(ConnectionPool connectionPool) throws DatabaseException {

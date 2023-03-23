@@ -31,10 +31,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 1</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
-                    <pa>${sessionScope.user.email}.</pa>
+                    <c:if test="${sessionScope.user.role == 2}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Items</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/users">Users</a>
+                    </c:if>
+                    <p class="nav-item nav-link">${sessionScope.user.email}</p>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
