@@ -15,6 +15,7 @@
             <th>id</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Balance</th>
             <th>Actions</th>
         </tr>
         <c:forEach items="${requestScope.users}" var="user">
@@ -22,6 +23,7 @@
                 <td>${user.id}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
+                <td>${user.balance}</td>
                 <td>
                     <a href="balance?id=${user.id}" value="${user.id}" class="btn btn-primary">Opdater balance</a>
                 </td>

@@ -33,7 +33,7 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Items</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/users">Users</a>
                     </c:if>
-                    <pa>${sessionScope.user.email}.</pa>
+                    <p class="nav-item nav-link">${sessionScope.user.email}</p>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
