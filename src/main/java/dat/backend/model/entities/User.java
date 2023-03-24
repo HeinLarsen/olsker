@@ -11,7 +11,6 @@ public class User
     private String password;
     private int role;
     private int balance;
-    public ArrayList<Transaction> transactions = new ArrayList<>();
 
     public User(String email, String password, int role, int balance)
     {
@@ -22,14 +21,14 @@ public class User
 
     }
 
-    public User(int id, String email, String password, int role, int balance, ArrayList<Transaction> transactions)
+    public User(int id, String email, String password, int role, int balance)
     {
         this.id = id;
         this.email = email;
         this.password = password;
         this.role = role;
         this.balance = balance;
-        this.transactions = transactions;
+
     }
 
 
@@ -73,17 +72,6 @@ public class User
 
     }
 
-    public void insertAmount(int amount)
-    {
-        Transaction transaction = new Transaction(amount);
-        transactions.add(transaction);
-    }
-
-    public ArrayList<Transaction> printbalance(){
-        {
-            return transactions;
-        }
-    }
 
 
 

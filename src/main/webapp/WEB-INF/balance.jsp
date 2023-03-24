@@ -9,32 +9,40 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="row">
+        <div class="row justify-content-center">
             <h3>Transactions</h3>
-            <table>
+        <div class="col-lg-12 col-12">
+            <table class="table" style="width:100%">
+                <thead>
                 <Tr>
-                    <th>Balance</th>
-                    <th>Dato</th>
+                    <th width="500">Balance</th>
+                    <th>Dato(timestamp?)</th>
+
                 </Tr>
-
-                 <c:forEach var="transaction" items="${requestScope.transactions}">
-                     <td>${requestScope.user.balance}kr</td>
-                     <td>${transaction.timestamp}</td>
-
-                 </c:forEach>
+                </thead>
+                <tbody>
+                <tr>
+                <td>${requestScope.user.balance}kr</td>
+                    <td>${requestScope.user.email }</td>
+                </tr>
+                </tbody>
             </table>
             <form>
+                <br/>
+
             <div class="col-lg-4 col-12">
                 <input type="hidden" value="${requestScope.user.balance}" name="currentBalance">
                 <input type="hidden" value="${requestScope.user.id}" name="id">
                 <input type="number" name="amount" class="form-control" placeholder="Beløb">
 
             </div>
+                <br/>
             <div class="col-auto col-12">
                     <button class="btn btn-success" formaction="balance" formmethod="post">Tilføj Balance</button>
                 <button class="btn btn-danger" formaction="removebalance" formmethod="post">Fjern Balance</button>
                 </div>
             </form>
+        </div>
         </div>
 
     </jsp:body>

@@ -46,7 +46,6 @@ public class RemoveBalance extends HttpServlet
                 User user = UserFacade.getUserById(userid, connectionPool);
 
                 request.setAttribute("user", user);
-                request.setAttribute("transactions", user.transactions);
                 request.getRequestDispatcher("WEB-INF/balance.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);

@@ -1,6 +1,5 @@
 package dat.backend.model.persistence;
 
-import dat.backend.model.entities.Transaction;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
@@ -88,8 +87,7 @@ class UserMapper
                     String password = rs.getString("password");
                     int role = rs.getInt("role");
                     int balance = rs.getInt("balance");
-                    ArrayList<Transaction> transactions = getTransactionByUser(id, connectionPool);
-                    User user = new User(id, email, password, role, balance, transactions);
+                    User user = new User(id, email, password, role, balance);
                     users.add(user);
                 }
             }
@@ -129,38 +127,6 @@ class UserMapper
 
 
 
-    private static ArrayList<Transaction> getTransactionByUser(int userid, ConnectionPool connectionPool) throws DatabaseException
-    {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        Logger.getLogger("web").log(Level.INFO, "");
-        String sql = "select * from transactions WHERE user_id = ?";
-        {
-            try (Connection connection = connectionPool.getConnection())
-            {
-                try (PreparedStatement ps = connection.prepareStatement(sql))
-                {
-                    ps.setInt(1, userid);
-                    ResultSet rs = ps.executeQuery();
-                    while (rs.next())
-                    {
-                        int amount = rs.getInt("amount");
-                        int id = rs.getInt("id");
-                        Timestamp timestamp = rs.getTimestamp("timestamp");
-                        Transaction transaction = new Transaction(id, amount, timestamp);
-                        transactions.add(transaction);
-                    }
-                } catch (SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            } catch (SQLException ex)
-            {
-                throw new DatabaseException(ex, "Could not get all users from database");
-            }
-
-        }
-       return transactions;
-    }
 
     public static User getUserById(int id, ConnectionPool connectionPool) {
         String sql = "SELECT * FROM user WHERE id = ?";
@@ -175,12 +141,8 @@ class UserMapper
                     String password = rs.getString("password");
                     int role = rs.getInt("role");
                     int balance = rs.getInt("balance");
-                    ArrayList<Transaction> transactions = getTransactionByUser(id, connectionPool);
-                    user = new User(id, email, password, role, balance, transactions);
+                    user = new User(id, email, password, role, balance);
                 }
-            } catch (DatabaseException e)
-            {
-                e.printStackTrace();
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
