@@ -22,6 +22,10 @@
                     <p> ${item.bottom.name}</p>
                 </c:forEach>
 
+                <form action="order" method="post">
+                    <button type="submit">Kassen</button>
+                </form>
+
             </div>
         </div>
 
