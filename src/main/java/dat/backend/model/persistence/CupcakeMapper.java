@@ -4,12 +4,7 @@ import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.Top;
 import dat.backend.model.exceptions.DatabaseException;
 
-import java.sql.*;
 import java.util.ArrayList;
-
-import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Top;
-import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +13,7 @@ import java.sql.SQLException;
 
 public class CupcakeMapper {
 
-    static ArrayList<Top> getTopById(ConnectionPool connectionPool) throws DatabaseException {
+    static ArrayList<Top> getToppings(ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "SELECT * FROM cupcake_top";
 
@@ -42,7 +37,7 @@ public class CupcakeMapper {
         return cupcakeTop;
     }
 
-    static ArrayList<Bottom> getBottomById(ConnectionPool connectionPool) throws DatabaseException {
+    static ArrayList<Bottom> getBottoms(ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "SELECT * FROM cupcake_bottom ";
 

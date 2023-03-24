@@ -9,11 +9,11 @@ import java.util.ArrayList;
 public class CupcakeFacade {
 
 
-    public static ArrayList<Top> getTopById(ConnectionPool connectionPool) throws DatabaseException {
-        return CupcakeMapper.getTopById(connectionPool);
+    public static ArrayList<Top> getToppings(ConnectionPool connectionPool) throws DatabaseException {
+        return CupcakeMapper.getToppings(connectionPool);
     }
 
-    public static ArrayList<Bottom> getBottomById(ConnectionPool connectionPool) throws DatabaseException {
-        return CupcakeMapper.getBottomById(connectionPool);
+    public static ArrayList<Bottom> getBottoms(ConnectionPool connectionPool) throws DatabaseException {
+        return CupcakeMapper.getBottoms(connectionPool);
     }
 }

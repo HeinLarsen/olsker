@@ -14,6 +14,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "AddToCart", value = "/addtocart")
 public class AddToCart extends HttpServlet {
@@ -21,8 +22,7 @@ public class AddToCart extends HttpServlet {
 
 
     @Override
-    public void init() throws ServletException
-    {
+    public void init() throws ServletException {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
@@ -39,30 +39,38 @@ public class AddToCart extends HttpServlet {
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
 
-        if (shoppingCart == null)
-        {
+        if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
         }
 
 
-        int topId = Integer.parseInt(request.getParameter("top"));
-        int bottomId = Integer.parseInt(request.getParameter("bottom"));
+        int topid = Integer.parseInt(request.getParameter("top"));
+
+        int bottomid = Integer.parseInt(request.getParameter("bottom"));
+
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        ArrayList<Top> top = new ArrayList<>();
-        try {
-            top = CupcakeFacade.getTopById(connectionPool);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
+
+        ServletContext applicationScope = getServletContext();
+        List<Top> toppingList = (List<Top>) applicationScope.getAttribute("toppingList");
+        List<Bottom> bottomList = (List<Bottom>) applicationScope.getAttribute("bottomList");
+
+
+        Top top = null;
+        Bottom bottom = null;
+
+        for (Top t : toppingList) {
+            if (t.getId() == topid) {
+                top = t;
+            }
         }
 
-        ArrayList<Bottom> bottom = new ArrayList<>();
-        try {
-            bottom = CupcakeFacade.getBottomById(connectionPool);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
+        for (Bottom b : bottomList) {
+            if (b.getId() == bottomid) {
+                bottom = b;
+            }
         }
-
+        System.out.println(top);
 
         Cupcake cupcake = new Cupcake(top, bottom, quantity);
         shoppingCart.add(cupcake);

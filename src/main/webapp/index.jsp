@@ -11,58 +11,46 @@
 
     <jsp:body>
 
-        <!-- slideshow carousel toppings-->
-        <div id="carouselExampleControls" class="carousel slide" data-interval="0">
-            <div class="carousel-inner">
-                <c:forEach items="${requestScope.cupcakeTop}" var="topping" varStatus="status">
-                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
-                        <img class="d-block w-50" src="./images/topping/${topping.name}.JPG">
-                    </div>
+        <div class="wrapper">
+            <div class="main-content">
+                <p>Kurv</p>
+            </div>
+            <div class="shopping-cart">
 
+                <c:forEach items="${sessionScope.shoppingcart.cupcakeList}" var="item">
+                    <p> ${item.top.name}</p>
+                    <p> ${item.bottom.name}</p>
                 </c:forEach>
+
+                <form action="order" method="post">
+                    <button type="submit">Kassen</button>
+                </form>
+
+            </div>
+        </div>
+
+        <form action="addtocart" method="post">
+            <div class="dropdown">
+                <select name="top">Topping
+                    <c:forEach items="${applicationScope.toppingList}" var="topping">
+                        <option value="${topping.id}" class="top">${topping.name}</option>
+
+                    </c:forEach>
+                </select>
             </div>
 
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-
-
-        <!-- slideshow carousel Bottom-->
-        <div id="carouselExampleControls2" class="carousel slide" data-interval="0">
-            <div class="carousel-inner">
-                <c:forEach items="${requestScope.cupcakeBottom}" var="bottom" varStatus="status">
-                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
-                        <img class="d-block w-50" src="./images/bottom/${bottom.name}.JPG">
-                    </div>
-                </c:forEach>
+            <div class="dropdown">
+                <select name="bottom">Bottom
+                    <c:forEach items="${applicationScope.bottomList}" var="bottom">
+                        <option value="${bottom.id}" class="bottom">${bottom.name  }</option>
+                    </c:forEach>
+                </select>
             </div>
 
-            <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+            <input type="number" name="quantity" value="1">
 
-
-        <div>
-            <form action="addtocart" method="post">
-                <input type="hidden" name="top" value="3">
-                <input type="hidden" name="bottom" value="2">
-                <input type="hidden" name="quantity" value="1">
-                <button type="submit">+</button>
-            </form>
-
-        </div>
+            <button type="submit">+</button>
+        </form>
 
 
     </jsp:body>
