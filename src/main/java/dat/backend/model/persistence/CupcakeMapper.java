@@ -4,6 +4,13 @@ import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.Top;
 import dat.backend.model.exceptions.DatabaseException;
 
+import java.sql.*;
+import java.util.ArrayList;
+
+import dat.backend.model.entities.Bottom;
+import dat.backend.model.entities.Top;
+import dat.backend.model.exceptions.DatabaseException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,63 +18,54 @@ import java.sql.SQLException;
 
 public class CupcakeMapper {
 
-    public static Top getTopById(int topId, ConnectionPool connectionPool)  {
+    static ArrayList<Top> getTopById(ConnectionPool connectionPool) throws DatabaseException {
 
-        Top top = null;
+        String sql = "SELECT * FROM cupcake_top";
 
-        String sql = "SELECT * FROM top WHERE id = ?";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setInt(1, topId);
+        ArrayList<Top> cupcakeTop = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
-                    int id = rs.getInt("id");
-                    String name = rs.getString("name");
-                    double price = rs.getDouble("price");
-                    top = new Top(id, name, price);
-                    return top;
-                } else {
-                    return null;
 
-                }
-
-            }
-        } catch (SQLException ex){
-           ex.printStackTrace();
-        }
-        return top;
-
-    }
-
-
-    public static Bottom getBottomById(int bottomId, ConnectionPool connectionPool)  {
-        Bottom bottom = null;
-
-        String sql = "SELECT * FROM bottom WHERE id = ?";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setInt(1, bottomId);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
-                    int id = rs.getInt("id");
-                    String name = rs.getString("name");
-                    double price = rs.getDouble("price");
-                    bottom = new Bottom(id, name, price);
-                    return bottom;
-                } else {
-                   return null;
+                while(rs.next()) {
+                    int cupcakeId = rs.getInt("id");
+                    String cupcakeName =rs.getString("topping");
+                    double cupcakePrice = rs.getDouble("price");
+                    Top newCupcake = new Top(cupcakeId, cupcakeName, cupcakePrice);
+                    cupcakeTop.add(newCupcake);
                 }
             }
-        } catch (SQLException ex){
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return bottom;
+        return cupcakeTop;
     }
 
+    static ArrayList<Bottom> getBottomById(ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "SELECT * FROM cupcake_bottom ";
+
+        ArrayList<Bottom> cupcakeBottom = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()) {
+                    int cupcakeId = rs.getInt("id");
+                    String cupcakeName =rs.getString("bottom");
+                    double cupcakePrice = rs.getDouble("price");
+                    Bottom newCupcake = new Bottom(cupcakeId, cupcakeName, cupcakePrice);
+                    cupcakeBottom.add(newCupcake);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cupcakeBottom;
+    }
 }
+
+
+

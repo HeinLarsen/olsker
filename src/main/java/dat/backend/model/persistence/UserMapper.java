@@ -42,24 +42,18 @@ class UserMapper
         return user;
     }
 
-    static User createUser(String email, String password, String role, int balance, ConnectionPool connectionPool) throws DatabaseException
+    static void createUser(String email, String password, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
-        User user;
-        String sql = "insert into user (email, password, role) values (?,?,?)";
+        String sql = "insert into user (email, password) values (?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ps.setString(1, email);
                 ps.setString(2, password);
-                ps.setInt(3, Integer.parseInt(role));
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
-                    user = new User(email, password, Integer.parseInt(role), balance);
-                } else
-                {
+                if (rowsAffected == 0) {
                     throw new DatabaseException("The user with email = " + email + " could not be inserted into the database");
                 }
             }
@@ -67,7 +61,6 @@ class UserMapper
         {
             throw new DatabaseException(ex, "Could not insert email into database");
         }
-        return user;
     }
 
     static ArrayList<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException
