@@ -50,9 +50,12 @@ public class Balance extends HttpServlet {
         User u = (User) session.getAttribute("user");
         try {
             if (u != null && u.getRole() == 2) {
+
+                int currentBalance = Integer.parseInt(request.getParameter("currentBalance"));
                 int id = Integer.parseInt(request.getParameter("id"));
-                int balance = Integer.parseInt(request.getParameter("balance"));
-                UserFacade.updateBalance(id, balance, connectionPool);
+                int transaction = Integer.parseInt(request.getParameter("balance"));
+                int newBalance = transaction + currentBalance;
+                UserFacade.updateBalance(id, newBalance, connectionPool);
                 response.sendRedirect("users");
             } else {
                 request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);

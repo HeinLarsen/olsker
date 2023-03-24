@@ -13,26 +13,28 @@
             <h3>Transactions</h3>
             <table>
                 <Tr>
+                    <th>Transaktioner</th>
                     <th>Balance</th>
                     <th>Dato</th>
                 </Tr>
 
                  <c:forEach var="transaction" items="${requestScope.transactions}">
-                     <td>${transaction.amount}</td>
+                     <td>${transaction.amount}kr</td>
+                     <td>${requestScope.user.balance}kr</td>
                      <td>${transaction.timestamp}</td>
 
                  </c:forEach>
             </table>
             <form>
             <div class="col-lg-4 col-12">
-
+                <input type="hidden" value="${requestScope.user.balance}" name="currentBalance">
                 <input type="hidden" value="${requestScope.user.id}" name="id">
-                <input type="number" name="balance" value="${requestScope.user.balance}" class="form-control">
+                <input type="number" name="balance" class="form-control" placeholder="Beløb">
 
             </div>
             <div class="col-auto col-12">
                     <button class="btn btn-success" formaction="balance" formmethod="post">Tilføj Balance</button>
-                <button class="btn btn-danger" formaction="balance" formmethod="post">Fjern Balance</button>
+                <button class="btn btn-danger" formaction="removebalance" formmethod="post">Fjern Balance</button>
                 </div>
             </form>
         </div>
