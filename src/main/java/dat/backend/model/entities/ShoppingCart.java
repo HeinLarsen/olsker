@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<Cupcake> cupcakeList = new ArrayList<>();
+    public List<Cupcake> cupcakeList = new ArrayList<>();
 
     public ShoppingCart()
     {
@@ -25,5 +25,7 @@ public class ShoppingCart {
     {
         cupcakeList.clear();
     }
+
+
 
 }

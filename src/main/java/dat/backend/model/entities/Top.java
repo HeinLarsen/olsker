@@ -23,4 +23,13 @@ public class Top {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Top{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

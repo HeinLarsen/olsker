@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Cupcake {
 
-    private ArrayList<Top> top;
-    private ArrayList<Bottom> bottom;
+    private Top top;
+    private Bottom bottom;
     private int quantity;
 
-    public Cupcake(ArrayList<Top> top, ArrayList<Bottom> bottom, int quantity) {
+    public Cupcake(Top top, Bottom bottom, int quantity) {
         this.top = top;
         this.bottom = bottom;
         this.quantity = quantity;
     }
 
-    public ArrayList<Top> getTop() {
+    public Top getTop() {
         return top;
     }
 
-    public ArrayList<Bottom> getBottom() {
+    public Bottom getBottom() {
         return bottom;
     }
 
