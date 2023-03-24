@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.User;
+import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.UserFacade;
 
@@ -24,11 +25,14 @@ public class Balance extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
+        int userid = Integer.parseInt(request.getParameter("id"));
+
         try {
             if (u != null && u.getRole() == 2) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                User user = UserFacade.getUserById(id, connectionPool);
+                User user = UserFacade.getUserById(userid, connectionPool);
+
                 request.setAttribute("user", user);
+                request.setAttribute("transactions", user.transactions);
                 request.getRequestDispatcher("WEB-INF/balance.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);

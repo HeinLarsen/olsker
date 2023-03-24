@@ -23,7 +23,7 @@
                 <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>
-                    <a href="balance?id=${user.id}" class="btn btn-primary">Opdater balance</a>
+                    <a href="balance?id=${user.id}" value="${user.id}" class="btn btn-primary">Opdater balance</a>
                 </td>
             </tr>
         </c:forEach>

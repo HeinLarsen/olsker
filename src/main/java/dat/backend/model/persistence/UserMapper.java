@@ -1,5 +1,6 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.Transaction;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
@@ -87,7 +88,8 @@ class UserMapper
                     String password = rs.getString("password");
                     int role = rs.getInt("role");
                     int balance = rs.getInt("balance");
-                    User user = new User(id, email, password, role, balance);
+                    ArrayList<Transaction> transactions = getTransactionByUser(id, connectionPool);
+                    User user = new User(id, email, password, role, balance, transactions);
                     users.add(user);
                 }
             }
@@ -125,6 +127,68 @@ class UserMapper
         return user;
     }
 
+
+    static User addToBalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        User user = null;
+        String sql = "insert into transaction(amount, user_id) VALUES (?,?)";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, amount);
+                ps.setInt(2, id);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+
+                } else
+                {
+                    throw new DatabaseException("The balance for user with id = " + id + " does not exist and could not be updated");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not update balance in database");
+        }
+        return user;
+    }
+
+    private static ArrayList<Transaction> getTransactionByUser(int userid, ConnectionPool connectionPool) throws DatabaseException
+    {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "select * from transactions WHERE user_id = ?";
+        {
+            try (Connection connection = connectionPool.getConnection())
+            {
+                try (PreparedStatement ps = connection.prepareStatement(sql))
+                {
+                    ps.setInt(1, userid);
+                    ResultSet rs = ps.executeQuery();
+                    while (rs.next())
+                    {
+                        int amount = rs.getInt("amount");
+                        int id = rs.getInt("id");
+                        Timestamp timestamp = rs.getTimestamp("timestamp");
+                        Transaction transaction = new Transaction(id, amount, timestamp);
+                        transactions.add(transaction);
+                    }
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            } catch (SQLException ex)
+            {
+                throw new DatabaseException(ex, "Could not get all users from database");
+            }
+
+        }
+       return transactions;
+    }
+
     public static User getUserById(int id, ConnectionPool connectionPool) {
         String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
@@ -138,12 +202,22 @@ class UserMapper
                     String password = rs.getString("password");
                     int role = rs.getInt("role");
                     int balance = rs.getInt("balance");
-                    user = new User(id, email, password, role, balance);
+                    ArrayList<Transaction> transactions = getTransactionByUser(id, connectionPool);
+                    user = new User(id, email, password, role, balance, transactions);
                 }
+            } catch (DatabaseException e)
+            {
+                e.printStackTrace();
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
+
+
+
+
+
+
 }

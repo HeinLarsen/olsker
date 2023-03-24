@@ -20,12 +20,17 @@ public class UserFacade
 
     public static User updateBalance(int id, int amount, ConnectionPool connectionPool)throws DatabaseException
     {
-         return UserMapper.updateBalance(id, amount, connectionPool);
+         User u = UserMapper.updateBalance(id, amount, connectionPool);
+         return u;
+
+
+
     }
 
 
     public static ArrayList<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getAllUsers(connectionPool);
+
     }
 
     public static User getUserById(int id, ConnectionPool connectionPool) throws DatabaseException {

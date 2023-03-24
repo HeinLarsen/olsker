@@ -1,5 +1,6 @@
 package dat.backend.model.entities;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User
@@ -9,6 +10,7 @@ public class User
     private String password;
     private int role;
     private int balance;
+    public ArrayList<Transaction> transactions = new ArrayList<>();
 
     public User(String email, String password, int role, int balance)
     {
@@ -16,16 +18,20 @@ public class User
         this.password = password;
         this.role = role;
         this.balance = balance;
+
     }
 
-    public User(int id, String email, String password, int role, int balance)
+    public User(int id, String email, String password, int role, int balance, ArrayList<Transaction> transactions)
     {
         this.id = id;
         this.email = email;
         this.password = password;
         this.role = role;
         this.balance = balance;
+        this.transactions = transactions;
     }
+
+
 
     public int getId() {
         return id;
