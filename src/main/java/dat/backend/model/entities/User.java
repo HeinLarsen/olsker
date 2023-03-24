@@ -1,5 +1,6 @@
 package dat.backend.model.entities;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -72,15 +73,19 @@ public class User
 
     }
 
-    @Override
-    public boolean equals(Object o)
+    public void insertAmount(int amount)
     {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) &&
-                getRole() == user.getRole();
+        Transaction transaction = new Transaction(amount);
+        transactions.add(transaction);
     }
+
+    public ArrayList<Transaction> printbalance(){
+        {
+            return transactions;
+        }
+    }
+
+
 
     @Override
     public int hashCode()
@@ -97,4 +102,6 @@ public class User
                 ", rolle='" + role + '\'' +
                 '}';
     }
+
+
 }

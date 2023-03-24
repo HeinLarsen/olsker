@@ -13,13 +13,11 @@
             <h3>Transactions</h3>
             <table>
                 <Tr>
-                    <th>Transaktioner</th>
                     <th>Balance</th>
                     <th>Dato</th>
                 </Tr>
 
                  <c:forEach var="transaction" items="${requestScope.transactions}">
-                     <td>${transaction.amount}kr</td>
                      <td>${requestScope.user.balance}kr</td>
                      <td>${transaction.timestamp}</td>
 
@@ -29,7 +27,7 @@
             <div class="col-lg-4 col-12">
                 <input type="hidden" value="${requestScope.user.balance}" name="currentBalance">
                 <input type="hidden" value="${requestScope.user.id}" name="id">
-                <input type="number" name="balance" class="form-control" placeholder="Beløb">
+                <input type="number" name="amount" class="form-control" placeholder="Beløb">
 
             </div>
             <div class="col-auto col-12">

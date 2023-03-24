@@ -14,6 +14,12 @@ public class Transaction
         this.timestamp = timestamp;
     }
 
+    public Transaction(int amount)
+    {
+        this.amount = amount;
+        this.timestamp = new Timestamp(System.currentTimeMillis());
+    }
+
     public int getAmount()
     {
         return amount;

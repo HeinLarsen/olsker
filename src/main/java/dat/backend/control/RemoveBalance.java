@@ -33,14 +33,21 @@ public class RemoveBalance extends HttpServlet
     {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
+        int userid = Integer.parseInt(request.getParameter("id"));
         try {
             if (u != null && u.getRole() == 2) {
+
                 int currentBalance = Integer.parseInt(request.getParameter("currentBalance"));
+                session.setAttribute("user", u);
                 int id = Integer.parseInt(request.getParameter("id"));
-                int transaction = Integer.parseInt(request.getParameter("balance"));
-                int newbalance = currentBalance - transaction  ;
+                int amount = Integer.parseInt(request.getParameter("amount"));
+                int newbalance = currentBalance - amount;
                 UserFacade.updateBalance(id, newbalance, connectionPool);
-                response.sendRedirect("users");
+                User user = UserFacade.getUserById(userid, connectionPool);
+
+                request.setAttribute("user", user);
+                request.setAttribute("transactions", user.transactions);
+                request.getRequestDispatcher("WEB-INF/balance.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
             }

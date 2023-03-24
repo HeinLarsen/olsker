@@ -128,33 +128,6 @@ class UserMapper
     }
 
 
-    static User addToBalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
-    {
-        Logger.getLogger("web").log(Level.INFO, "");
-        User user = null;
-        String sql = "insert into transaction(amount, user_id) VALUES (?,?)";
-
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setInt(1, amount);
-                ps.setInt(2, id);
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
-
-                } else
-                {
-                    throw new DatabaseException("The balance for user with id = " + id + " does not exist and could not be updated");
-                }
-            }
-        } catch (SQLException ex)
-        {
-            throw new DatabaseException(ex, "Could not update balance in database");
-        }
-        return user;
-    }
 
     private static ArrayList<Transaction> getTransactionByUser(int userid, ConnectionPool connectionPool) throws DatabaseException
     {
