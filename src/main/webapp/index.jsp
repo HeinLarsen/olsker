@@ -11,9 +11,6 @@
 
     <jsp:body>
 
-        <p>You are not logged in yet. You can do it here: <a
-                href="login.jsp">Login</a></p>
-
         <!-- slideshow carousel toppings-->
         <div id="carouselExampleControls" class="carousel slide" data-interval="0">
             <div class="carousel-inner">
@@ -59,8 +56,8 @@
 
         <div>
             <form action="addtocart" method="post">
-                <input type="hidden" name="topId" value="3">
-                <input type="hidden" name="bottomId" value="2">
+                <input type="hidden" name="top" value="3">
+                <input type="hidden" name="bottom" value="2">
                 <input type="hidden" name="quantity" value="1">
                 <button type="submit">+</button>
             </form>
