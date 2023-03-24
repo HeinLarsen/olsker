@@ -25,17 +25,18 @@ tr:nth-child(even) {
     background-color: #D6EEEE;
 }
 
-.wrapper {
-    display: flex;
+.shop_container {
+   margin-left: 85%;
 }
 
 .main-content {
     flex: 1;
+
 }
 
 .shopping-cart {
+    margin-top: 6%;
     width: 25%;
-    padding: 20px;
     box-sizing: border-box;
 }
 
