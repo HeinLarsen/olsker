@@ -18,7 +18,7 @@ import java.util.List;
 
 @WebServlet(name = "AddToCart", value = "/addtocart")
 public class AddToCart extends HttpServlet {
-    private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
 
     @Override
