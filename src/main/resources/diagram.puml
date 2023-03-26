@@ -2,21 +2,55 @@
 'https://plantuml.com/class-diagram
 
 
-UserFacade --> UserMapper
 
-class UserFacade {
-    static User login(String email, String password)
-    static User createUser(String email, String password, String role)
+entity ShoppingCart {
+    - HashMap<int, Order> orderMap
+    + void addOrder(Order order)
+    + void removeOrder(Order order)
+    + float getTotalPrice()
 }
 
-class UserMapper {
-    static User login(String email, String password, ConnectionPool connectionPool)
-    static User createUser(String email, String password, String role, ConnectionPool connectionPool)
+entity Order {
+    - int id
+    - int userId
+    - Timestamp created
+    - isPaid boolean
+    - HashMap<int, OrderItem> itemMap
+    + void addItem(orderItem item)
+    + void removeItem(orderItem item)
+    + void updateItem(orderItem item)
+    + float getTotalPrice()
 }
 
-class Order {
-
+entity OrderItem {
+    - int id
+    - int orderId
+    - int quantity
+    - Top top
+    - Bottom bottom
+    + Top getTop()
+    + Bottom getBottom()
+    + float getTotalPrice()
 }
 
+entity Top {
+    - int id
+    - String name
+    - float price
+    + String getName()
+    + float getPrice()
+}
 
+entity Bottom {
+    - int id
+    - String name
+    - float price
+    + String getName()
+    + float getPrice()
+}
+
+ShoppingCart .. Order
+Order .. OrderItem
+OrderItem .. Top
+OrderItem .. Bottom
 @enduml

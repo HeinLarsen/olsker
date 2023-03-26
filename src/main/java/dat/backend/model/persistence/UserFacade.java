@@ -31,4 +31,8 @@ public class UserFacade
     public static User getUserById(int id, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserById(id, connectionPool);
     }
+
+    public static void subtractBalance(User u, int getTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
+        UserMapper.subtractBalance(u, getTotalPrice, connectionPool);
+    }
 }

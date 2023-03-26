@@ -3,7 +3,8 @@ package dat.backend.control;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.entities.User;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -26,15 +27,9 @@ public class Order extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
-            response.sendRedirect("login?order=true");
+            response.sendRedirect("login.jsp?order=true");
         } else {
             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
-            int sum = 0;
-            for (int i = 0; i < shoppingCart.cupcakeList.size(); i++) {
-                sum += shoppingCart.cupcakeList.get(i).getTop().getPrice() + shoppingCart.cupcakeList.get(i).getBottom().getPrice();
-            }
-            System.out.println(sum);
-            request.setAttribute("sum", sum);
             request.getRequestDispatcher("WEB-INF/order.jsp").forward(request, response);
         }
 
@@ -42,7 +37,23 @@ public class Order extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
+        try {
+        int res = Orderfacade.createOrder(user.getId(), connectionPool);
+            OrderItemFacade.createOrderItems(res, shoppingCart, connectionPool);
+            UserFacade.subtractBalance(user, shoppingCart.totalPrice(), connectionPool);
+            user = UserFacade.login(user.getEmail(), user.getPassword(), connectionPool);
+            session.setAttribute("user", user);
+            request.setAttribute("shoppingcart", shoppingCart);
+            session.removeAttribute("shoppingcart");
+            request.getRequestDispatcher("WEB-INF/receipt.jsp").forward(request, response);
 
+        } catch (DatabaseException e) {
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
 
 
     }

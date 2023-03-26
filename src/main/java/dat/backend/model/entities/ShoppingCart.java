@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    public List<Cupcake> cupcakeList = new ArrayList<>();
+    public ArrayList<Cupcake> cupcakeList = new ArrayList<>();
 
     public ShoppingCart()
     {
@@ -17,8 +17,18 @@ public class ShoppingCart {
     {
         return cupcakeList.size();
     }
-    public List<Cupcake> getCupcakeList()
-    {
+    public int totalPrice() {
+        int sum = 0;
+        for (int i = 0; i < cupcakeList.size(); i++)
+        {
+            sum += cupcakeList.get(i).getTotalPrice();
+        }
+        return sum;
+    }
+    public ArrayList<Cupcake> getCupcakeList() {
+        return cupcakeList;
+    }
+    public ArrayList<Cupcake> cupcakes() {
         return cupcakeList;
     }
     public void ClearCart()
@@ -26,6 +36,12 @@ public class ShoppingCart {
         cupcakeList.clear();
     }
 
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "cupcakeList=" + cupcakeList +
+                '}';
+    }
 
 
 }

@@ -11,7 +11,19 @@
     <jsp:body>
         <div class="row justify-content-center">
             <div class="col-8">
-                    <b>balance:</b>  ${sessionScope.user.balance}
+                <div class="row">
+                    <div class="col-12">
+                        <b>balance:</b>  ${sessionScope.user.balance}
+                    </div>
+                    <div class="col-12">
+                        <form action="updatebalance" method="post">
+                        <input class="form-control d-inline w-25" type="number" name="balance" value="${sessionScope.user.balance}">
+                        <button class="btn btn-primary align-top">
+                            Indsæt penge
+                        </button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         <div class="col-4">
@@ -26,21 +38,22 @@
 
 
                 </div>
-
         </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-auto">
-                    ${requestScope.sum}
-            </div>
-            <div class="col-auto">
-                <c:if test="${requestScope.sum > sessionScope.user.balance}">
-                    <p>Ikke nok penge</p>
-                </c:if>
-                <form>
-                    <button type="submit" formmethod="post" formaction="order">Betal</button>
-                </form>
+                <c:choose>
+                    <c:when test="${requestScope.sum > sessionScope.user.balance}">
+                        <p class="red">Ikke nok penge</p>
+                        <button class="btn btn-primary" disabled>Betal</button>
+                    </c:when>
+                    <c:otherwise>
+                        <form>
+                            <button class="btn btn-primary" type="submit" formmethod="post" formaction="order">Betal</button>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
 

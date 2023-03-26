@@ -22,10 +22,20 @@ public class Cupcake {
         return bottom;
     }
 
+    public double getTotalPrice() {
+        return (top.getPrice() + bottom.getPrice()) * quantity;
+    }
+
     public int getQuantity() {
         return quantity;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Cupcake{" +
+                "top=" + top +
+                ", bottom=" + bottom +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
