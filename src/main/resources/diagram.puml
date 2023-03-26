@@ -4,9 +4,9 @@
 
 
 entity ShoppingCart {
-    - HashMap<int, Order> orderMap
+    - ArrayList<Order> orders
     + void addOrder(Order order)
-    + void removeOrder(Order order)
+    + void removeOrder(int id)
     + float getTotalPrice()
 }
 
@@ -15,10 +15,9 @@ entity Order {
     - int userId
     - Timestamp created
     - isPaid boolean
-    - HashMap<int, OrderItem> itemMap
+    - ArrayList<OrderItem> orderItems
     + void addItem(orderItem item)
-    + void removeItem(orderItem item)
-    + void updateItem(orderItem item)
+    + void removeItem(int id)
     + float getTotalPrice()
 }
 

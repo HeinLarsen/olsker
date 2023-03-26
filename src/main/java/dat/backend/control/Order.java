@@ -15,7 +15,6 @@ import java.io.IOException;
 public class Order extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
-
     @Override
     public void init() throws ServletException {
         this.connectionPool = ApplicationStart.getConnectionPool();
@@ -42,8 +41,8 @@ public class Order extends HttpServlet {
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
         try {
         int res = Orderfacade.createOrder(user.getId(), connectionPool);
-            OrderItemFacade.createOrderItems(res, shoppingCart, connectionPool);
-            UserFacade.subtractBalance(user, shoppingCart.totalPrice(), connectionPool);
+            OrderItemFacade.createOrderItems(res, shoppingCart.getOrder(), connectionPool);
+            UserFacade.subtractBalance(user, shoppingCart.getTotalPrice(), connectionPool);
             user = UserFacade.login(user.getEmail(), user.getPassword(), connectionPool);
             session.setAttribute("user", user);
             request.setAttribute("shoppingcart", shoppingCart);

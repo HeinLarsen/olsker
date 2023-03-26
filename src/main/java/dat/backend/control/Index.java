@@ -2,8 +2,10 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Bottom;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.entities.Top;
+import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.CupcakeFacade;
@@ -29,9 +31,12 @@ public class Index extends HttpServlet {
 
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
-
+        User u = (User) session.getAttribute("user");
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
+            if (u != null) {
+                shoppingCart.addOrder(new Order(u));
+            }
             session.setAttribute("shoppingCart", shoppingCart);
         }
 

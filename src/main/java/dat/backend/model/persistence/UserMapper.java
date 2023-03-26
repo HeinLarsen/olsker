@@ -92,7 +92,7 @@ class UserMapper
         return users;
     }
 
-    static User updateBalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
+    static User updateBalance(int id, double amount, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user = null;
@@ -101,7 +101,7 @@ class UserMapper
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setFloat(1, amount);
+                ps.setDouble(1, amount);
                 ps.setInt(2, id);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
@@ -141,14 +141,14 @@ class UserMapper
         return user;
     }
 
-    public static void subtractBalance(User u, int getTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
-        int newBalance = u.getBalance() - getTotalPrice;
+    public static void subtractBalance(User u, double getTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
+        double newBalance = u.getBalance() - getTotalPrice;
         String sql = "update user SET balance = ? WHERE id = ?";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setFloat(1, newBalance);
+                ps.setDouble(1, newBalance);
                 ps.setInt(2, u.getId());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected != 1) {

@@ -1,13 +1,12 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Cupcake;
-import dat.backend.model.entities.ShoppingCart;
-import dat.backend.model.entities.Top;
+import dat.backend.model.entities.*;
+import dat.backend.model.entities.Order;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.CupcakeFacade;
+import dat.backend.model.persistence.OrderItemMapper;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -38,15 +37,20 @@ public class AddToCart extends HttpServlet {
 
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
+        User user = (User) session.getAttribute("user");
 
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
+            shoppingCart.addOrder(new Order(user));
+        }
+        if (shoppingCart.getOrder() == null) {
+            shoppingCart.addOrder(new Order(user));
         }
 
 
-        int topid = Integer.parseInt(request.getParameter("top"));
+        int topId = Integer.parseInt(request.getParameter("top"));
 
-        int bottomid = Integer.parseInt(request.getParameter("bottom"));
+        int bottomId = Integer.parseInt(request.getParameter("bottom"));
 
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
@@ -60,22 +64,22 @@ public class AddToCart extends HttpServlet {
         Bottom bottom = null;
 
         for (Top t : toppingList) {
-            if (t.getId() == topid) {
+            if (t.getId() == topId) {
                 top = t;
             }
         }
 
         for (Bottom b : bottomList) {
-            if (b.getId() == bottomid) {
+            if (b.getId() == bottomId) {
                 bottom = b;
             }
         }
         System.out.println(top);
 
-        Cupcake cupcake = new Cupcake(top, bottom, quantity);
-        shoppingCart.add(cupcake);
+        OrderItem orderItem = new OrderItem(top, bottom, quantity);
+        shoppingCart.getOrder().addItem(orderItem);
         session.setAttribute("shoppingcart", shoppingCart);
-        session.setAttribute("cartsize", shoppingCart.GetNumberOfCupcakes());
+        session.setAttribute("cartsize", shoppingCart.getOrder().getOrderItems().size());
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }

@@ -4,52 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderItem {
-    List<OrderItem> orderItemsList = new ArrayList<>();
     private int id;
-    private int order_id;
-    private int cupcake_top_id;
-    private int cupcake_bottom_id;
-    private float cupcake_top_price;
-    private float cupcake_bottom_price;
+    private int orderId;
     private int quantity;
+    private Top top;
+    private Bottom bottom;
 
-    public OrderItem( int id, int order_id, int cupcake_top_id, int cupcake_bottom_id, float cupcake_top_price, float cupcake_bottom_price, int quantity) {
+    public OrderItem(int id, int orderId, int quantity, Top top, Bottom bottom) {
         this.id = id;
-        this.order_id = order_id;
-        this.cupcake_top_id = cupcake_top_id;
-        this.cupcake_bottom_id = cupcake_bottom_id;
-        this.cupcake_top_price = cupcake_top_price;
-        this.cupcake_bottom_price = cupcake_bottom_price;
+        this.orderId = orderId;
         this.quantity = quantity;
+        this.top = top;
+        this.bottom = bottom;
     }
 
-
+    public OrderItem(Top top, Bottom bottom, int quantity) {
+        this.quantity = quantity;
+        this.top = top;
+        this.bottom = bottom;
+    }
 
     public int getId() {
         return id;
     }
 
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public int getCupcake_top_id() {
-        return cupcake_top_id;
-    }
-
-    public int getCupcake_bottom_id() {
-        return cupcake_bottom_id;
-    }
-
-    public float getCupcake_top_price() {
-        return cupcake_top_price;
-    }
-
-    public float getCupcake_bottom_price() {
-        return cupcake_bottom_price;
+    public int getOrderId() {
+        return orderId;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public Top getTop() {
+        return top;
+    }
+
+    public Bottom getBottom() {
+        return bottom;
+    }
+
+    public double getTotalPrice() {
+        return quantity * (top.getPrice() + bottom.getPrice());
     }
 }
