@@ -16,4 +16,5 @@ public class OrderItemFacade {
     public static List<OrderItem> getOrderItems(ConnectionPool connectionPool) throws DatabaseException {
        return OrderItemMapper.getOrderItems(connectionPool);
     }
+
 }

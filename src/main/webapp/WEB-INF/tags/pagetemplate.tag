@@ -58,28 +58,6 @@
     <jsp:doBody/>
 </div>
 
-<!-- Footer -->
-<div class="container mt-3">
-    <hr/>
-    <div class="row mt-4">
-        <div class="col">
-            Rønnevej 56<br/>
-            3770 Allinge
-        </div>
-        <div class="col">
-            <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; Olsker Cupcakes</p>
-        </div>
-        <div class="col">
-            Pssst Chris du stinker<br/>
-            2. semester efterår 2022
-        </div>
-    </div>
-
-</div>
-
-</div>
-
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

@@ -21,16 +21,7 @@ table {
 th, td {
     border: 1px solid silver;
     padding: 15px;
-
-}
-
-.carousel-inner {
-    margin-top: -10px;
-    margin-left: 20%;
-}
-
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    background: aqua;
+    vertical-align:top;
 }
 
 
@@ -39,7 +30,9 @@ tr:nth-child(even) {
 }
 
 .shop_container {
-    margin-left: 85%;
+   margin-left: 85%;
+    background-color: #D6EEEE;
+    border: solid  #95732A;
 }
 
 .main-content {
@@ -81,5 +74,12 @@ tr:nth-child(even) {
 .totalPrice {
     text-align: right;
 }
+
+.grid_form{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    margin-left: 20%;
+}
+
 
 

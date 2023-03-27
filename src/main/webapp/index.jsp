@@ -33,6 +33,7 @@
             <button type="submit">+</button>
         </form>
 
+
         <div class="shop_container">
             <div class="main-content">
                 <h2 class="cart-heading">Kurv</h2>
@@ -61,8 +62,7 @@
 
             </div>
         </div>
-
-
+        
 
 
     </jsp:body>
