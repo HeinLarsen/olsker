@@ -1,31 +1,21 @@
 package dat.backend.model.entities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingCart {
-    public List<Cupcake> cupcakeList = new ArrayList<>();
+    private Order order;
 
-    public ShoppingCart()
-    {
-    }
-    public void add(Cupcake cupcake)
-    {
-        cupcakeList.add(cupcake);
-    }
-    public int GetNumberOfCupcakes()
-    {
-        return cupcakeList.size();
-    }
-    public List<Cupcake> getCupcakeList()
-    {
-        return cupcakeList;
-    }
-    public void ClearCart()
-    {
-        cupcakeList.clear();
+    public Order getOrder() {
+        return order;
     }
 
-
-
+    public void addOrder(Order order) {
+        this.order = order;
+    }
+    public void removeOrder() {
+       this.order = null;
+    }
+    public double getTotalPrice() {
+        return order.getTotalPrice();
+    }
 }

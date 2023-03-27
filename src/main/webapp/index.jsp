@@ -33,6 +33,11 @@
                 </c:forEach>
 
 
+                <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
+                    <p> ${item.top.name}</p>
+                    <p> ${item.bottom.name}</p>
+                </c:forEach>
+
                 <form action="order" method="get">
                     <button type="submit">Kassen</button>
                 </form>

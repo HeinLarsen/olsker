@@ -10,15 +10,22 @@ public class User
     private String email;
     private String password;
     private int role;
-    private int balance;
+    private double balance;
 
-    public User(String email, String password, int role, int balance)
+    public User(String email, String password, int role, double balance)
     {
         this.email = email;
         this.password = password;
         this.role = role;
         this.balance = balance;
 
+    }
+
+    public User(int id, String email, int role, double balance) {
+        this.id = id;
+        this.email = email;
+        this.role = role;
+        this.balance = balance;
     }
 
     public User(int id, String email, String password, int role, int balance)
@@ -67,7 +74,7 @@ public class User
         this.role = role;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
 
     }
