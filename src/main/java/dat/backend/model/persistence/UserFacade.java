@@ -18,8 +18,7 @@ public class UserFacade
         UserMapper.createUser(email, password, connectionPool);
     }
 
-    public static User updateBalance(int id, double amount, ConnectionPool connectionPool)throws DatabaseException
-    {
+    public static User updateBalance(int id, double amount, ConnectionPool connectionPool)throws DatabaseException {
          User u = UserMapper.updateBalance(id, amount, connectionPool);
          return u;
 

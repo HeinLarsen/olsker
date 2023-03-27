@@ -28,7 +28,7 @@ public class UpdateBalance extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
-        int balance = Integer.parseInt(request.getParameter("balance"));
+        double balance = Double.parseDouble(request.getParameter("balance"));
         try {
                 UserFacade.updateBalance(u.getId(), balance, connectionPool);
                 session.setAttribute("user", UserFacade.login(u.getEmail(), u.getPassword(), connectionPool));
