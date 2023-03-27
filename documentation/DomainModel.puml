@@ -1,0 +1,56 @@
+@startuml
+!pragma layout smetana
+Title Domain Model
+
+class customer{
+email
+password
+role
+balance
+}
+class orderItem{
+cupcake top
+cupcake bottom
+quantity
+}
+class orders{
+order_id
+date
+orderItems
+}
+class shoppingCart{
+orderItems (cupcakes)
+}
+class balance{
+Customer_id
+balance
+}
+
+class Administrator{
+email
+password
+role
+}
+class ViewCustomerOrders{
+orders
+}
+class EditCustomerBalance{
+Customer_email
+balance
+}
+
+
+
+customer "1" -- "*" orderItem
+orderItem "*" -- "1" orders
+customer "1" -- "1" shoppingCart
+customer "1" -- "1" balance
+shoppingCart "1" --"*" orders
+
+Administrator "1" -- "*" ViewCustomerOrders
+Administrator "1" -- "*" EditCustomerBalance
+
+
+
+
+@enduml
