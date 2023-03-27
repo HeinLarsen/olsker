@@ -21,6 +21,7 @@
                 <th>Order ID</th>
                 <th>User</th>
                 <th>Order Items</th>
+                <th>Total Price</th>
 
             </tr>
             <c:forEach items="${requestScope.orderList}" var="order">
@@ -33,9 +34,15 @@
                     </td>
                     <td>
                         <c:forEach items="${order.getOrderItems()}" var="items">
-                            <p>${items.getBottom().getName()} ${items.getBottom().getPrice()}kr,- ${items.getTop().getName()}  ${items.getTop().getPrice()},- x${items.getQuantity()} </p>
+                            <p>${items.getBottom().getName()} ${items.getBottom().getPrice()}kr,- ${items.getTop().getName()}  ${items.getTop().getPrice()},- x${items.getQuantity()}  </p>
                         </c:forEach>
+
                     </td>
+                    <td>
+                        <p>${order.totalPrice}kr,-</p>
+                    </td>
+
+
                 </tr>
             </c:forEach>
 

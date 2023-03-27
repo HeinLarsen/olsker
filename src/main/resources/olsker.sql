@@ -58,18 +58,8 @@ create table `order_item` (
   foreign key (cupcake_top_id) references cupcake_top(id),
   foreign key (cupcake_bottom_id) references cupcake_bottom(id),
   primary key (id)
-)
-CREATE VIEW order_item_view AS
-SELECT o.id AS order_id,
-       u.email,
-       CONCAT(ct.topping, ' / ', cb.bottom) AS cupcake_type,
-       (oi.cupcake_top_price + oi.cupcake_bottom_price) AS total_price,
-       oi.quantity
-FROM `order` o
-JOIN `user` u ON o.user_id = u.id
-JOIN `order_item` oi ON o.id = oi.order_id
-JOIN `cupcake_top` ct ON oi.cupcake_top_id = ct.id
-JOIN `cupcake_bottom` cb ON oi.cupcake_bottom_id = cb.id;
+);
+
 
 
 CREATE DATABASE  IF NOT EXISTS `olsker_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
