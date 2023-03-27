@@ -1,6 +1,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
@@ -16,6 +17,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
 <header>
@@ -52,6 +54,28 @@
         <jsp:invoke fragment="header"/>
     </h1>
     <jsp:doBody/>
+</div>
+
+<!-- Footer -->
+<div class="container mt-3">
+    <hr/>
+    <div class="row mt-4">
+        <div class="col">
+            Rønnevej 56<br/>
+            3770 Allinge
+        </div>
+        <div class="col">
+            <jsp:invoke fragment="footer"/><br/>
+            <p>&copy; Olsker Cupcakes</p>
+        </div>
+        <div class="col">
+            Pssst Chris du stinker<br/>
+            2. semester efterår 2022
+        </div>
+    </div>
+
+</div>
+
 </div>
 
 <!-- Bootstrap Bundle with Popper -->

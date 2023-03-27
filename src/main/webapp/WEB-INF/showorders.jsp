@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <t:pagetemplate>
     <jsp:attribute name="header">
-        Order List
+        Customer orders
     </jsp:attribute>
     <jsp:body>
         <table class="table table-striped table-bordered">
