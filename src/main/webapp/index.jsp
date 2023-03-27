@@ -5,25 +5,53 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+         Lav din egen cupcake
     </jsp:attribute>
 
-    <jsp:attribute name="footer">
-        Welcome to the frontpage
-    </jsp:attribute>
 
     <jsp:body>
 
-        <p>Startcode for 2nd semester </p>
+        <div class="wrapper">
+            <div class="main-content">
+                <p>Kurv</p>
+            </div>
+            <div class="shopping-cart">
 
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
+                <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
+                    <p> ${item.top.name}</p>
+                    <p> ${item.bottom.name}</p>
+                </c:forEach>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="login.jsp">Login</a></p>
-        </c:if>
+                <form action="order" method="get">
+                    <button type="submit">Kassen</button>
+                </form>
+
+            </div>
+        </div>
+
+        <form action="addtocart" method="post">
+            <div class="dropdown">
+                <select name="top">Topping
+                    <c:forEach items="${applicationScope.toppingList}" var="topping">
+                        <option value="${topping.id}" class="top">${topping.name}</option>
+
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="dropdown">
+                <select name="bottom">Bottom
+                    <c:forEach items="${applicationScope.bottomList}" var="bottom">
+                        <option value="${bottom.id}" class="bottom">${bottom.name  }</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <input type="number" name="quantity" value="1">
+
+            <button type="submit">+</button>
+        </form>
+
 
     </jsp:body>
 

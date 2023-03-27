@@ -27,9 +27,10 @@ class UserMapper
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
+                    int id = rs.getInt("id");
                     int balance = rs.getInt("balance");
                     int role = rs.getInt("role");
-                    user = new User(email, password, role, balance);
+                    user = new User(id, email, password, role, balance);
                 } else
                 {
                     throw new DatabaseException("Wrong email or password");
@@ -91,7 +92,7 @@ class UserMapper
         return users;
     }
 
-    static User updateBalance(int id, int amount, ConnectionPool connectionPool) throws DatabaseException
+    static User updateBalance(int id, double amount, ConnectionPool connectionPool) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user = null;
@@ -100,7 +101,7 @@ class UserMapper
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setFloat(1, amount);
+                ps.setDouble(1, amount);
                 ps.setInt(2, id);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
@@ -117,9 +118,6 @@ class UserMapper
         }
         return user;
     }
-
-
-
 
     public static User getUserById(int id, ConnectionPool connectionPool) {
         String sql = "SELECT * FROM user WHERE id = ?";
@@ -143,9 +141,23 @@ class UserMapper
         return user;
     }
 
-
-
-
-
-
+    public static void subtractBalance(User u, double getTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
+        double newBalance = u.getBalance() - getTotalPrice;
+        String sql = "update user SET balance = ? WHERE id = ?";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setDouble(1, newBalance);
+                ps.setInt(2, u.getId());
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected != 1) {
+                    throw new DatabaseException("The balance for user with id = " + u.getId() + " does not exist and could not be updated");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not update balance in database");
+        }
+    }
 }

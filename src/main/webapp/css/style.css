@@ -3,18 +3,41 @@
 table {
     border-collapse: collapse;
     border: 1px solid silver;
-    padding:15px;
+    padding: 15px;
 }
 
 th, td {
     border: 1px solid silver;
     padding: 15px;
-
+    vertical-align:top;
 }
+
+.carousel-inner {
+    margin-top: -10px;
+    margin-left: 20%;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background: aqua;
+}
+
 
 tr:nth-child(even) {
     background-color: #D6EEEE;
 }
 
+.wrapper {
+    display: flex;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.shopping-cart {
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
 

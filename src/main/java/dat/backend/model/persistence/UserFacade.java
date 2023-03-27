@@ -18,7 +18,7 @@ public class UserFacade
         UserMapper.createUser(email, password, connectionPool);
     }
 
-    public static User updateBalance(int id, int amount, ConnectionPool connectionPool)throws DatabaseException
+    public static User updateBalance(int id, double amount, ConnectionPool connectionPool)throws DatabaseException
     {
          User u = UserMapper.updateBalance(id, amount, connectionPool);
          return u;
@@ -35,5 +35,9 @@ public class UserFacade
 
     public static User getUserById(int id, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getUserById(id, connectionPool);
+    }
+
+    public static void subtractBalance(User u, double getTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
+        UserMapper.subtractBalance(u, getTotalPrice, connectionPool);
     }
 }
