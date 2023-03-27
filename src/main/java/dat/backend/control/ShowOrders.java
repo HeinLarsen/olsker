@@ -3,7 +3,8 @@ package dat.backend.control;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.*;
 import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.Orderfacade;
+import dat.backend.model.persistence.OrderFacade;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,7 +26,7 @@ public class ShowOrders extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         if(u != null && u.getRole() == 2){
-            List<Order> orderItemViewList = Orderfacade.ShowOrders(connectionPool);
+            List<Order> orderItemViewList = OrderFacade.ShowOrders(connectionPool);
             request.setAttribute("orderListView", orderItemViewList);
             request.getRequestDispatcher("WEB-INF/showorders.jsp").forward(request, response);
         } else {
