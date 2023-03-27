@@ -51,7 +51,7 @@
     </nav>
 </header>
 
-<div id="body" class="container mt-4" style="min-height: 400px;">
+<div id="body" class="container mt-4 mb-3">
     <h1>
         <jsp:invoke fragment="header"/>
     </h1>
@@ -70,7 +70,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script
+        crossorigin="anonymous"></script>
 
 
 </body>

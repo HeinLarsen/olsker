@@ -4,23 +4,9 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-         Kvittering:
-    </jsp:attribute>
-
     <jsp:body>
-        <div class="row">
-            <c:forEach items="${requestScope.shoppingcart.getOrder().getOrderItems()}" var="item">
-                <div class="col-7">
-                    ${item.getBottom().getName()} med ${item.getTop().getName()} ${item.getQuantity()} stk. ${item.getTotalPrice()}kr,-
-                        <hr>
-                </div>
-            </c:forEach>
-            <div class="col-7">
-                ${requestScope.shoppingcart.getTotalPrice()}kr,-
-            </div>
-
+        <div class="row justify-content-center">
+            <t:cart title="Kvittering" type="get" btnText="Til forsiden" url="index" showPaymentBtn="true" prop="${requestScope.shoppingcart}"/>
         </div>
     </jsp:body>
-
 </t:pagetemplate>

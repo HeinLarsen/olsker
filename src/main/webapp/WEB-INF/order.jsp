@@ -10,7 +10,7 @@
 
     <jsp:body>
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-9">
                 <div class="row">
                     <div class="col-12">
                         <b>balance:</b>  ${sessionScope.user.balance}
@@ -25,36 +25,7 @@
                     </div>
                 </div>
             </div>
-
-        <div class="col-4">
-                <div class="main-content">
-                    <p>Kurv</p>
-                </div>
-                <div class="shopping-cart">
-                    <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
-                        <p> ${item.top.name}</p>
-                        <p> ${item.bottom.name}</p>
-                    </c:forEach>
-
-
-                </div>
-        </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-auto">
-                <c:choose>
-                    <c:when test="${requestScope.sum > sessionScope.user.balance}">
-                        <p class="red">Ikke nok penge</p>
-                        <button class="btn btn-primary" disabled>Betal</button>
-                    </c:when>
-                    <c:otherwise>
-                        <form>
-                            <button class="btn btn-primary" type="submit" formmethod="post" formaction="order">Betal</button>
-                        </form>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+            <t:cart type="post" btnText="Betal" url="order" showPaymentBtn="true" prop="${sessionScope.shoppingcart}" title="Kurv"/>
         </div>
 
 
