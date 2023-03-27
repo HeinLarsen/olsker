@@ -1,5 +1,7 @@
 package dat.backend.model.entities;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User
@@ -8,12 +10,20 @@ public class User
     private String email;
     private String password;
     private int role;
-    private int balance;
+    private double balance;
 
-    public User(String email, String password, int role, int balance)
+    public User(String email, String password, int role, double balance)
     {
         this.email = email;
         this.password = password;
+        this.role = role;
+        this.balance = balance;
+
+    }
+
+    public User(int id, String email, int role, double balance) {
+        this.id = id;
+        this.email = email;
         this.role = role;
         this.balance = balance;
     }
@@ -25,7 +35,10 @@ public class User
         this.password = password;
         this.role = role;
         this.balance = balance;
+
     }
+
+
 
     public int getId() {
         return id;
@@ -61,20 +74,13 @@ public class User
         this.role = role;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
 
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) &&
-                getRole() == user.getRole();
-    }
+
+
 
     @Override
     public int hashCode()
@@ -91,4 +97,6 @@ public class User
                 ", rolle='" + role + '\'' +
                 '}';
     }
+
+
 }

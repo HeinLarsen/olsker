@@ -2,6 +2,8 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.OrderItem;
+import dat.backend.model.entities.User;
+import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,32 +11,44 @@ import java.util.List;
 
 public class OrderMapper {
 
-    public static List<Order>  GetAllOrders(ConnectionPool connectionPool){
-        String sql = "SELECT * FROM `order`";
+    public static List<Order> getAllOrders(ConnectionPool connectionPool){
+        String sql = "SELECT `order`.id, `order`.created, `order`.paid, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id";
         List<Order> orderList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     int id = rs.getInt("id");
-                    int user_id = rs.getInt("user_id");
+                    int userId = rs.getInt("user_id");
+                    String email = rs.getString("email");
+                    int role = rs.getInt("role");
+                    double balance = rs.getDouble("balance");
                     Timestamp created = rs.getTimestamp("created");
-                    Order order = new Order(id, user_id, created);
+                    boolean isPaid = rs.getBoolean("paid");
+                    Order order = new Order(id, new User(userId, email, role, balance), created, isPaid);
                     orderList.add(order);
                 }
             }
         } catch (SQLException ex){
             ex.printStackTrace();
         }
-        List<OrderItem> orderItemList = OderItemMapper.GetAllItems(connectionPool);
-       for(Order o : orderList){
-           for(OrderItem oi : orderItemList){
-               if(o.getId() == oi.getOrder_id()){
-                   o.addToOrderList(oi);
-               }
-           }
-        }
         return orderList;
+    }
 
+    public static int createOrder(int id, ConnectionPool connectionPool) throws DatabaseException {
+        System.out.println(id);
+        String sql = "INSERT INTO `order` (user_id) VALUES (?)";
+        try(Connection connection = connectionPool.getConnection()) {
+            try(PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            throw new DatabaseException(ex, "Error creating order. Something went wrong with the database");
+        }
     }
 }
