@@ -1,5 +1,17 @@
 /* CSS stylesheet  for application */
 
+nav {
+    background-color: #FFF0DA;
+}
+
+.navbar-brand {
+    margin-left: 14%;
+}
+
+body {
+    background-color: #FFF5E5;
+}
+
 table {
     border-collapse: collapse;
     border: 1px solid silver;
@@ -12,32 +24,62 @@ th, td {
     vertical-align:top;
 }
 
-.carousel-inner {
-    margin-top: -10px;
-    margin-left: 20%;
-}
-
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    background: aqua;
-}
-
 
 tr:nth-child(even) {
     background-color: #D6EEEE;
 }
 
-.wrapper {
-    display: flex;
+.shop_container {
+   margin-left: 85%;
+    background-color: #D6EEEE;
+    border: solid  #95732A;
 }
 
 .main-content {
     flex: 1;
+
+}
+
+.cart-heading {
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .shopping-cart {
+    margin-top: 6%;
     width: 25%;
-    padding: 20px;
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
 }
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.itemName {
+    margin-right: 10px;
+}
+
+.itemPrice {
+    margin-left: 10px;
+}
+
+.cupcakePrice {
+    text-align: right;
+}
+
+.totalPrice {
+    text-align: right;
+}
+
+.grid_form{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    margin-left: 20%;
+}
+
 
 
