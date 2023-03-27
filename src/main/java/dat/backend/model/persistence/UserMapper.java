@@ -118,6 +118,9 @@ class UserMapper
         return user;
     }
 
+
+
+
     public static User getUserById(int id, ConnectionPool connectionPool) {
         String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
@@ -139,4 +142,10 @@ class UserMapper
         }
         return user;
     }
+
+
+
+
+
+
 }
