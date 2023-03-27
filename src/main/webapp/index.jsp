@@ -13,20 +13,24 @@
 
         <div class="shop_container">
             <div class="main-content">
-                <p>Kurv</p>
+                <h2 class="cart-heading">Kurv</h2>
             </div>
             <div class="shopping-cart">
 
                 <c:forEach items="${sessionScope.shoppingcart.cupcakeList}" var="item">
-                    <p> ${item.top.name}</p>
-                    <p> ${item.bottom.name}</p>
-                    <p> ${item.top.price}</p>
-                    <p> ${item.bottom.price}</p>
-                    <p name="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
+                    <div class="item">
+                        <p class="itemName"> ${item.top.name}</p>
+                        <p class="itemPrice"> ${item.top.price}</p>
+                    </div>
+                    <div class="item">
+                        <p class="itemName"> ${item.bottom.name}</p>
+                        <p class="itemPrice"> ${item.bottom.price}</p>
+                    </div>
+
+                    <p class="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
                     <p>___________</p>
-
+                    <p class="totalPrice"> ${items.total_price} </p>
                 </c:forEach>
-
 
 
                 <form action="order" method="get">
