@@ -1,5 +1,17 @@
 /* CSS stylesheet  for application */
 
+nav {
+    background-color: #FFF0DA;
+}
+
+.navbar-brand {
+    margin-left: 14%;
+}
+
+body {
+    background-color: #FFF5E5;
+}
+
 table {
     border-collapse: collapse;
     border: 1px solid silver;
@@ -28,10 +40,39 @@ tr:nth-child(even) {
 
 }
 
+.cart-heading {
+    font-weight: bold;
+    font-size: 24px;
+}
+
 .shopping-cart {
     margin-top: 6%;
     width: 25%;
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.itemName {
+    margin-right: 10px;
+}
+
+.itemPrice {
+    margin-left: 10px;
+}
+
+.cupcakePrice {
+    text-align: right;
+}
+
+.totalPrice {
+    text-align: right;
 }
 
 .grid_form{
