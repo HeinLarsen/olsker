@@ -11,13 +11,13 @@
     <jsp:body>
 
         <form class="grid_form" action="signup" method="post">
-            <label for="email">email: </label>
+            <label for="email">Email: </label>
             <label for="password">Password: </label>
             <input class="m_right" type="text" id="email" name="email"/>
             <input class= "m_right" type="password" id="password" name="password"/>
         </form>
 
-        <button type="submit" class="btn btn-success item5">Opret</button
+        <button type="submit" class="btn btn-success item5">Opret</button>
 
     </jsp:body>
 

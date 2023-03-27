@@ -6,37 +6,29 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+        <div class="loginHeader">
+            Login
+        </div>
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
-        <form action="login" method="post">
 
-        <div class="row justify-content-center mx-auto">
-            <div class="col-12">
-                <label for="email">email: </label>
-                <input type="text" id="email" name="email"/>
-            </div>
-            <div class="col-12">
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password"/>
-            </div>
-            <div class="col-12">
-                <input type="submit" class="btn btn-primary mb-2"  value="Log in"/>
+        <form class="grid_form" action="login" method="post">
+            <label for="email">Email:</label>
+            <label for="password">Password:</label>
 
-            </div>
-        </div>
+            <input class="m_right" type="text" id="email" name="email"/>
+            <input class="m_right" type="password" id="password" name="password"/>
         </form>
 
+        <div class="login">
+            <input type="submit" class="btn btn-primary mb-2" value="Log in"/>
+        </div>
 
 
-
-        <div class="row">
-            <div class="col-12">
-                <a href="signup.jsp" class="btn btn-primary">Opret profil</a>
-            </div>
+        <div class="signup">
+            <a href="signup.jsp" class="btn btn-primary">Opret profil</a>
         </div>
 
     </jsp:body>
