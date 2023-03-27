@@ -45,6 +45,10 @@ public class Order {
         return orderItems;
     }
 
+    public void addOrderItemList(List<OrderItem> orderItemList){
+        orderItems.addAll(orderItemList);
+    }
+
     public void addItem(OrderItem orderItem){
         orderItems.add(orderItem);
     }
@@ -65,27 +69,14 @@ public class Order {
         return sum;
     }
 
-    /*
-
-    public
-
-    public int getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", isPaid=" + isPaid +
+                ", created=" + created +
+                ", orderItems=" + orderItems +
+                '}';
     }
-
-    public int getUser_id() {
-        return userId;
-    }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-    public void addToOrderList(OrderItem orderItem){
-        orderItemsList.add(orderItem);
-
-    }
-
-    public List<OrderItem> getOrderItemsList() {
-        return orderItemsList;
-    } */
 }

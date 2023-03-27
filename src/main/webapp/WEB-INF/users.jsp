@@ -26,6 +26,7 @@
                 <td>${user.balance}</td>
                 <td>
                     <a href="balance?id=${user.id}" value="${user.id}" class="btn btn-primary">Opdater balance</a>
+                    <a href="showallorderitemsbyorderid?id=${user.id}" value="${user.id}" class="btn btn-primary">Se alle brugerens ordrer</a>
                 </td>
             </tr>
         </c:forEach>
