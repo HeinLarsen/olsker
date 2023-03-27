@@ -57,4 +57,31 @@ public class OrderItemMapper {
             throw new DatabaseException(e, "Could not create order");
         }
     }
+    public static List<OrderItem> getAllOrderItemsByOrderId(int orderId, ConnectionPool connectionPool){
+        String sql = "SELECT *, cupcake_top.topping, cupcake_top.price, cupcake_bottom.bottom, cupcake_bottom.price FROM olsker.order_item join cupcake_top on cupcake_top_id = cupcake_top.id join cupcake_bottom on cupcake_bottom_id = cupcake_bottom.id where order_id = ?";
+        List<OrderItem> orderItemList = new ArrayList<>();
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, orderId);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    int topId = rs.getInt("cupcake_top_id");
+                    int bottomId = rs.getInt("cupcake_bottom_id");
+                    float cupcake_top_price = rs.getFloat("cupcake_top_price");
+                    float cupcake_bottom_price = rs.getFloat("cupcake_bottom_price");
+                    String topping = rs.getString("topping");
+                    String bottom = rs.getString("bottom");
+                    int quantity = rs.getInt("quantity");
+                    OrderItem orderItem = new OrderItem(id, orderId, quantity, new Top(topId, topping, cupcake_top_price), new Bottom(bottomId, bottom, cupcake_bottom_price) );
+                    orderItemList.add(orderItem);
+                }
+            }
+
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return orderItemList;
+    }
 }
