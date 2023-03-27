@@ -6,23 +6,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<OrderItem> orderItemsList = new ArrayList<>();
     private int id;
-    private int user_id;
+    private User user;
+    private boolean isPaid;
     private Timestamp created;
+    private List<OrderItem> orderItems = new ArrayList<>();
 
-    public Order(int id, int user_id, Timestamp created) {
+
+    public Order(int id, User user, Timestamp created, boolean isPaid) {
         this.id = id;
-        this.user_id = user_id;
+        this.user = user;
         this.created = created;
+        this.isPaid = isPaid;
+    }
+
+    public Order(User user) {
+        this.user = user;
+        this.isPaid = false;
     }
 
     public int getId() {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void addItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+    }
+
+    public void removeItem(int id){
+        for (OrderItem i : orderItems) {
+            if (i.getId() == id) {
+                orderItems.remove(i);
+            }
+        }
+    }
+
+    public double getTotalPrice() {
+        double sum = 0;
+        for (OrderItem i : orderItems) {
+            sum += i.getTotalPrice();
+        }
+        return sum;
+    }
+
+    /*
+
+    public
+
+    public int getId() {
+        return id;
+    }
+
     public int getUser_id() {
-        return user_id;
+        return userId;
     }
 
     public Timestamp getCreated() {
@@ -35,5 +87,5 @@ public class Order {
 
     public List<OrderItem> getOrderItemsList() {
         return orderItemsList;
-    }
+    } */
 }

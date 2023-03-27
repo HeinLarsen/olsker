@@ -40,6 +40,7 @@ create table `order` (
   `id` int not null auto_increment,
   `user_id` int not null,
   `created` Timestamp not null default current_timestamp,
+  `paid` boolean default false,
   foreign key (user_id) references user(id),
   primary key (id)
 );

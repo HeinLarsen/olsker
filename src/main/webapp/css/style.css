@@ -2,51 +2,42 @@
 
 table {
     border-collapse: collapse;
-    border: 3px black !important;
-    padding:15px;
+    border: 1px solid silver;
+    padding: 15px;
+}
+
+th, td {
+    border: 1px solid silver;
+    padding: 15px;
+    vertical-align:top;
+}
+
+.carousel-inner {
+    margin-top: -10px;
+    margin-left: 20%;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background: aqua;
 }
 
 
-
-
- td {
-    border-collapse: collapse;
-    padding:15px;
-}
- tr{
-     border-collapse: collapse;
- }
-
-th {
-    background-color: black;
-    color: black;
-    position: center;
-}
-thead {
-    background-color: bisque;
+tr:nth-child(even) {
+    background-color: #D6EEEE;
 }
 
-tr{
-    color: black !important;
-}
-body{
-   background-color: bisque !important;
-}
-header{
-    background-color: bisque !important;
+.wrapper {
+    display: flex;
 }
 
-div.container{
-
-    background-color: bisque !important;
+.main-content {
+    flex: 1;
 }
 
-nav.navbar{
-    background-color: bisque !important;
+.shopping-cart {
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
 }
-
-
-
-
 
 
