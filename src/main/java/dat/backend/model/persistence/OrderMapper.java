@@ -51,4 +51,5 @@ public class OrderMapper {
             throw new DatabaseException(ex, "Error creating order. Something went wrong with the database");
         }
     }
+    // TODO: Create getAllOrdersByUserId method (where user_id = id in user table)
 }

@@ -64,28 +64,4 @@ public class Order {
         }
         return sum;
     }
-
-    /*
-
-    public
-
-    public int getId() {
-        return id;
-    }
-
-    public int getUser_id() {
-        return userId;
-    }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-    public void addToOrderList(OrderItem orderItem){
-        orderItemsList.add(orderItem);
-
-    }
-
-    public List<OrderItem> getOrderItemsList() {
-        return orderItemsList;
-    } */
 }

@@ -11,57 +11,62 @@
 
     <jsp:body>
 
-        <form action="addtocart" method="post">
-            <div class="dropdown">
-                <select name="top">Topping
-                    <c:forEach items="${applicationScope.toppingList}" var="topping">
-                        <option value="${topping.id}" class="top">${topping.name}</option>
-                    </c:forEach>
-                </select>
-            </div>
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <form action="addtocart" method="post">
+                    <div class="row">
+                        <c:forEach items="${applicationScope.toppingList}" var="topping">
+                            <div class="col-lg-2 col-md-4 col-6 mb-3">
+                                <input type="radio" name="top" id="tp${topping.name}" value="${topping.id}">
+                                <div class="card">
+                                    <label for="tp${topping.name}">
+                                        <img src="images/topping/${topping.name}.JPG" draggable="false">
+                                        <p class="p-1 mb-0">${topping.name}</p>
+                                        <i class="p-1"> ${topping.price} kr,-</i>
+                                    </label>
+                                </div>
+                            </div>
 
-            <div class="dropdown">
-                <select name="bottom">Bottom
-                    <c:forEach items="${applicationScope.bottomList}" var="bottom">
-                        <option value="${bottom.id}" class="bottom">${bottom.name}</option>
-                    </c:forEach>
-                </select>
-            </div>
-
-            <input type="number" name="quantity" value="1">
-
-            <button type="submit">+</button>
-        </form>
-
-
-        <div class="shop_container">
-            <div class="main-content">
-                <h2 class="cart-heading">Kurv</h2>
-            </div>
-            <div class="shopping-cart">
-
-                <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
-                    <div class="item">
-                        <p class="itemName"> ${item.top.name}</p>
-                        <p class="itemPrice"> ${item.top.price}</p>
-                    </div>
-                    <div class="item">
-                        <p class="itemName"> ${item.bottom.name}</p>
-                        <p class="itemPrice"> ${item.bottom.price}</p>
+                        </c:forEach>
                     </div>
 
-                    <p class="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
-                    <p>___________</p>
-                    <p class="totalPrice"> ${item.totalPrice}</p>
+                    <div class="row">
+                        <c:forEach items="${applicationScope.bottomList}" var="bottom">
+                            <div class="col-lg-2 col-md-4 col-6 mb-3">
+                                <input type="radio" name="bottom" id="bm${bottom.name}" value="${bottom.id}">
 
-                </c:forEach>
+                                <div class="card">
 
-                <form action="order" method="get">
-                    <button type="submit">Kassen</button>
+                                    <label for="bm${bottom.name}">
+                                        <img src="images/bottom/${bottom.name}.JPG" draggable="false">
+                                        <p class="p-1 mb-0">${bottom.name}</p>
+                                        <i class="p-1"> ${bottom.price} kr,-</i>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </c:forEach>
+                    </div>
+                    <div class="row justify-content-center mb-2">
+                    <div class="col-2">
+                        <input type="hidden" name="quantity" value="1">
+                        <button class="btn btn-success w-100" type="submit">+</button>
+                    </div>
+                    </div>
+
+
                 </form>
-
             </div>
+
+            <t:cart showQuantityBtns="true" url="order" type="get" btnText="Til kassen" prop="${sessionScope.shoppingcart}" showPaymentBtn="true" title="Kurv"/>
+
         </div>
+
+
+
+
+
         
 
 
