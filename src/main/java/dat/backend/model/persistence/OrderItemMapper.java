@@ -59,7 +59,7 @@ public class OrderItemMapper {
     }
     public static List<OrderItem> getAllOrderItemsByOrderId(int orderId, ConnectionPool connectionPool){
         String sql = "SELECT *, cupcake_top.topping, cupcake_top.price, cupcake_bottom.bottom, cupcake_bottom.price FROM olsker.order_item join cupcake_top on cupcake_top_id = cupcake_top.id join cupcake_bottom on cupcake_bottom_id = cupcake_bottom.id where order_id = ?";
-        List<OrderItem> orderItemList = new ArrayList<>();
+        List<OrderItem> orderItemsList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ps.setInt(1, orderId);
@@ -74,7 +74,7 @@ public class OrderItemMapper {
                     String bottom = rs.getString("bottom");
                     int quantity = rs.getInt("quantity");
                     OrderItem orderItem = new OrderItem(id, orderId, quantity, new Top(topId, topping, cupcake_top_price), new Bottom(bottomId, bottom, cupcake_bottom_price) );
-                    orderItemList.add(orderItem);
+                    orderItemsList.add(orderItem);
                 }
             }
 
@@ -82,6 +82,6 @@ public class OrderItemMapper {
         }catch (SQLException ex){
             ex.printStackTrace();
         }
-        return orderItemList;
+        return orderItemsList;
     }
 }

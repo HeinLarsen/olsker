@@ -22,6 +22,7 @@
                 <th>User</th>
                 <th>Order Items</th>
                 <th>Total Price</th>
+                <th>Order Items</th>
 
             </tr>
             <c:forEach items="${requestScope.orderList}" var="order">
@@ -41,6 +42,17 @@
                     <td>
                         <p>${order.totalPrice}kr,-</p>
                     </td>
+                   <td><c:forEach items="${requestScope.orderItemsList}" var="itemsList">
+                      <td><c:forEach items="${itemsList.orderItems}" var="Test">
+
+                    <p>${Test.orderId}</p>
+                    <p>${Test.id}</p>
+                    <p>${Test.top} ${Test.bottom}</p>
+                    <p>${Test.totalPrice}</p>
+                    <p>${Test.quantity}</p>
+                        </c:forEach> </td>
+
+                    </c:forEach> </td>
 
 
                 </tr>
