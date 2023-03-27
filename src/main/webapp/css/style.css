@@ -8,8 +8,13 @@ nav {
     margin-left: 14%;
 }
 
+.navbar h1 {
+    font-weight: 700;
+}
+
 body {
     background-color: #FFF5E5;
+    font-family: 'Inter', sans-serif;
 }
 
 table {
