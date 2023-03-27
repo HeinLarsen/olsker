@@ -1,6 +1,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
@@ -17,13 +18,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <h1>OLSKER</h1>
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/cupcakelogo.JPG" width="400px;" class="img-fluid"/>
             </a>
