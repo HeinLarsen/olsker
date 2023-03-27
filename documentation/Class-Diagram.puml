@@ -1,0 +1,75 @@
+@startuml
+'https://plantuml.com/class-diagram
+!pragma layout smetana
+
+
+entity ShoppingCart {
+    - ArrayList<Order> orders
+    + void addOrder(Order order)
+    + void removeOrder(int id)
+    + double getTotalPrice()
+}
+
+entity Order {
+    - int id
+    - int userId
+    - Timestamp created
+    - isPaid boolean
+    - ArrayList<OrderItem> orderItems
+    + void addItem(orderItem item)
+    + void removeItem(int id)
+    + double getTotalPrice()
+}
+
+entity OrderItem {
+    - int id
+    - int orderId
+    - int quantity
+    - Top top
+    - Bottom bottom
+    + Top getTop()
+    + Bottom getBottom()
+    + double getTotalPrice()
+}
+
+entity Top {
+    - int id
+    - String name
+    - double price
+    + String getName()
+    + double getPrice()
+}
+
+entity Bottom {
+    - int id
+    - String name
+    - double price
+    + String getName()
+    + double getPrice()
+}
+Annotation AddToCart
+{
+    + void doPost(HttpServletRequest request, HttpServletResponse response)
+    + void doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+AddToCart .. ShoppingCart
+ShoppingCart .. Order
+Order .. OrderItem
+OrderItem .. Top
+OrderItem .. Bottom
+
+entity User {
+    - int id
+    - String name
+    - String email
+    - String password
+    - String role
+    + String getName()
+    + String getEmail()
+    + String getPassword()
+    + String getRole()
+}
+
+
+@enduml
