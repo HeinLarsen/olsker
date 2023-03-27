@@ -1,5 +1,17 @@
 /* CSS stylesheet  for application */
 
+nav {
+    background-color: #FFF0DA;
+}
+
+.navbar-brand {
+    margin-left: 14%;
+}
+
+body {
+    background-color: #FFF5E5;
+}
+
 table {
     border-collapse: collapse;
     border: 1px solid silver;
@@ -9,7 +21,7 @@ table {
 th, td {
     border: 1px solid silver;
     padding: 15px;
-    vertical-align:top;
+
 }
 
 .carousel-inner {

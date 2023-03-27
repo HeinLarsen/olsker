@@ -11,13 +11,35 @@
 
     <jsp:body>
 
+        <form action="addtocart" method="post">
+            <div class="dropdown">
+                <select name="top">Topping
+                    <c:forEach items="${applicationScope.toppingList}" var="topping">
+                        <option value="${topping.id}" class="top">${topping.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="dropdown">
+                <select name="bottom">Bottom
+                    <c:forEach items="${applicationScope.bottomList}" var="bottom">
+                        <option value="${bottom.id}" class="bottom">${bottom.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <input type="number" name="quantity" value="1">
+
+            <button type="submit">+</button>
+        </form>
+
         <div class="shop_container">
             <div class="main-content">
                 <h2 class="cart-heading">Kurv</h2>
             </div>
             <div class="shopping-cart">
 
-                <c:forEach items="${sessionScope.shoppingcart.cupcakeList}" var="item">
+                <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
                     <div class="item">
                         <p class="itemName"> ${item.top.name}</p>
                         <p class="itemPrice"> ${item.top.price}</p>
@@ -29,13 +51,8 @@
 
                     <p class="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
                     <p>___________</p>
-                    <p class="totalPrice"> ${items.total_price} </p>
-                </c:forEach>
+                    <p class="totalPrice"> ${item.totalPrice}</p>
 
-
-                <c:forEach items="${sessionScope.shoppingcart.getOrder().getOrderItems()}" var="item">
-                    <p> ${item.top.name}</p>
-                    <p> ${item.bottom.name}</p>
                 </c:forEach>
 
                 <form action="order" method="get">
@@ -45,28 +62,7 @@
             </div>
         </div>
 
-        <form action="addtocart" method="post">
-            <div class="dropdown">
-                <select name="top">Topping
-                    <c:forEach items="${applicationScope.toppingList}" var="topping">
-                        <option value="${topping.id}" class="top">${topping.name}</option>
 
-                    </c:forEach>
-                </select>
-            </div>
-
-            <div class="dropdown">
-                <select name="bottom">Bottom
-                    <c:forEach items="${applicationScope.bottomList}" var="bottom">
-                        <option value="${bottom.id}" class="bottom">${bottom.name  }</option>
-                    </c:forEach>
-                </select>
-            </div>
-
-            <input type="number" name="quantity" value="1">
-
-            <button type="submit">+</button>
-        </form>
 
 
     </jsp:body>
