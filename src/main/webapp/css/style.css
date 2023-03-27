@@ -77,9 +77,26 @@ tr:nth-child(even) {
 
 .grid_form{
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 300px 300px;
     margin-left: 20%;
+    grid-gap: 20%;
+}
+
+.item5{
+
+    width: 200px;
+    margin-left: 43%;
+    margin-top: 18%;
+
+}
+
+.grid_form:nth-child(2){
+
+    margin-top: 9rem;
 }
 
 
+.m_right{
+    margin-right: 4em;
+}
 
