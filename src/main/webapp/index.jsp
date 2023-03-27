@@ -11,31 +11,6 @@
 
     <jsp:body>
 
-        <div class="shop_container">
-            <div class="main-content">
-                <p>Kurv</p>
-            </div>
-            <div class="shopping-cart">
-
-                <c:forEach items="${sessionScope.shoppingcart.cupcakeList}" var="item">
-                    <p> ${item.top.name}</p>
-                    <p> ${item.bottom.name}</p>
-                    <p> ${item.top.price}</p>
-                    <p> ${item.bottom.price}</p>
-                    <p name="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
-                    <p>___________</p>
-
-                </c:forEach>
-
-
-
-                <form action="order" method="get">
-                    <button type="submit">Kassen</button>
-                </form>
-
-            </div>
-        </div>
-
         <form action="addtocart" method="post">
             <div class="dropdown">
                 <select name="top">Topping
@@ -58,6 +33,33 @@
 
             <button type="submit">+</button>
         </form>
+
+
+
+        <div class="shop_container">
+            <div class="main-content">
+                <p>Kurv</p>
+            </div>
+            <div class="shopping-cart">
+
+                <c:forEach items="${sessionScope.shoppingcart.cupcakeList}" var="item">
+                    <p> ${item.top.name}</p>
+                    <p> ${item.bottom.name}</p>
+                    <p> ${item.top.price}</p>
+                    <p> ${item.bottom.price}</p>
+                    <p name="cupcakePrice"> ${item.bottom.price + item.top.price}</p>
+                    <p>___________</p>
+
+                </c:forEach>
+
+
+
+                    <form action="order" method="get">
+                        <button type="submit">Kassen</button>
+                    </form>
+
+            </div>
+        </div>
 
 
     </jsp:body>

@@ -11,15 +11,6 @@ th, td {
     padding: 15px;
 }
 
-.carousel-inner {
-    margin-top: -10px;
-    margin-left: 20%;
-}
-
-.carousel-control-next-icon, .carousel-control-prev-icon {
-    background: aqua;
-}
-
 
 tr:nth-child(even) {
     background-color: #D6EEEE;
@@ -27,6 +18,8 @@ tr:nth-child(even) {
 
 .shop_container {
    margin-left: 85%;
+    background-color: #D6EEEE;
+    border: solid  #95732A;
 }
 
 .main-content {
@@ -39,5 +32,16 @@ tr:nth-child(even) {
     width: 25%;
     box-sizing: border-box;
 }
+
+.grid_form{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    margin-left: 20%;
+}
+
+.item5{
+    margin: %;
+}
+
 
 

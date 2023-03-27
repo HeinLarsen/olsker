@@ -9,10 +9,6 @@
              Login
     </jsp:attribute>
 
-    <jsp:attribute name="footer">
-            Login
-    </jsp:attribute>
-
     <jsp:body>
 
         <h3>You can log in here</h3>
@@ -33,6 +29,10 @@
             </div>
         </div>
         </form>
+
+
+
+
         <div class="row">
             <div class="col-12">
                 <a href="signup.jsp" class="btn btn-primary">Opret profil</a>
