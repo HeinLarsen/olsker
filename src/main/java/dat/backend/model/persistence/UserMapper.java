@@ -60,6 +60,7 @@ class UserMapper
             }
         } catch (SQLException ex)
         {
+            ex.printStackTrace();
             throw new DatabaseException(ex, "Could not insert email into database");
         }
     }

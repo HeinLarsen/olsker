@@ -44,14 +44,14 @@
                 <c:choose>
                     <c:when test="${url == 'order' && type == 'post'}">
                         <c:if test="${sessionScope.user.balance >= prop.totalPrice}">
-                            <button class="btn mb-1 btn-success w-75" type="submit">${btnText}</button>
+                            <button class="btn mb-1 btn-primary w-75" type="submit">${btnText}</button>
                         </c:if>
                         <c:if test="${sessionScope.user.balance < prop.totalPrice}">
                             <button class="btn mb-1 btn-danger w-75" type="submit" disabled>Du har ikke nok penge på din konto</button>
                         </c:if>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn mb-1 btn-success w-75" type="submit">${btnText}</button>
+                        <button class="btn mb-1 btn-primary w-75" type="submit">${btnText}</button>
                     </c:otherwise>
                 </c:choose>
             </form>

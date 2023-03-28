@@ -24,11 +24,11 @@ public class Balance extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
-        int userid = Integer.parseInt(request.getParameter("id"));
+        int userId = Integer.parseInt(request.getParameter("id"));
 
         try {
             if (u != null && u.getRole() == 2) {
-                User user = UserFacade.getUserById(userid, connectionPool);
+                User user = UserFacade.getUserById(userId, connectionPool);
 
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("WEB-INF/balance.jsp").forward(request, response);
