@@ -20,4 +20,8 @@ public class Orderfacade {
     public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool){
         return OrderMapper.getAllOrdersByUserId(userId, connectionPool);
     }
+
+    public static void deleteOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        OrderMapper.deleteOrderById(orderId, connectionPool);
+    }
 }

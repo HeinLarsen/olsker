@@ -16,6 +16,7 @@
                 <th>Order Items</th>
                 <th>Total Price</th>
                 <th>Order Items</th>
+                <th>Actions</th>
 
             </tr>
             <c:forEach items="${requestScope.orderList}" var="order">
@@ -46,7 +47,12 @@
                         </c:forEach> </td>
 
                     </c:forEach> </td>
-
+                    <td>
+                        <form>
+                            <input type="hidden" name="id" value="${order.id}">
+                            <button class="btn btn-danger" formaction="deleteorder" formmethod="post">Slet order</button>
+                        </form>
+                    </td>
 
                 </tr>
             </c:forEach>
