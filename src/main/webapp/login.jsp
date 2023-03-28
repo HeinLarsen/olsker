@@ -6,36 +6,34 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+        Login
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+
         <form action="login" method="post">
-
-        <div class="row justify-content-center mx-auto">
-            <div class="col-12">
-                <label for="email">email: </label>
-                <input type="text" id="email" name="email"/>
+            <div class="row justify-content-center mt-5">
+                <div class="email col-2">
+                    <label for="email">Email: </label>
+                    <input type="text" id="email" name="email"/>
+                </div>
+                <div class="password col-2">
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password"/>
+                </div>
+                <div class="login col-auto">
+                    <input type="submit" class="btn btn-primary mb-2" value="Log in"/>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password"/>
-            </div>
-            <div class="col-12">
-                <input type="submit" class="btn btn-primary mb-2"  value="Log in"/>
-
-            </div>
-        </div>
         </form>
 
 
-
-
-        <div class="row">
-            <div class="col-12">
-                <a href="signup.jsp" class="btn btn-primary">Opret profil</a>
+        <div class="row justify-content-center mt-5">
+            <div class="signupKnap col-auto">
+                <p class="d-inline">Du kan oprette dig her:
+                    <a href="signup.jsp" class="btn btn-primary mb-2">Opret profil</a>
+                </p>
             </div>
         </div>
 
