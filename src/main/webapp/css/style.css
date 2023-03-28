@@ -103,7 +103,6 @@ tr:nth-child(even) {
 }
 
 .item5 {
-
     width: 200px;
     margin-left: 43%;
     margin-top: 18%;
@@ -111,8 +110,8 @@ tr:nth-child(even) {
 }
 
 .grid_form:nth-child(2) {
-
     margin-top: 9rem;
+    margin-bottom: 5rem;
 }
 
 input[type=radio] {
@@ -163,5 +162,15 @@ label img {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.login {
+    margin-inline-start: 70%;
+}
+
+.signup {
+    margin: 5%;
+    display: flex;
+    justify-content: center;
 }
 

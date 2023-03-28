@@ -6,9 +6,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-        <div class="loginHeader">
-            Login
-        </div>
+        Login
     </jsp:attribute>
 
     <jsp:body>
@@ -28,7 +26,9 @@
 
 
         <div class="signup">
-            <a href="signup.jsp" class="btn btn-primary">Opret profil</a>
+            <p>Du kan oprette dig her:
+                <a href="signup.jsp" class="btn btn-primary mb-2">Opret profil</a>
+            </p>
         </div>
 
     </jsp:body>
