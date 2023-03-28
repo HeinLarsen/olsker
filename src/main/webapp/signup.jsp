@@ -10,6 +10,7 @@
 
     <jsp:body>
 
+
         <form action="signup" method="post">
             <div class="row justify-content-center mt-5">
                 <div class="email col-2">
@@ -20,14 +21,12 @@
                     <label for="password">Password: </label>
                     <input class="m_right" type="password" id="password" name="password"/>
                 </div>
+                <div class="signup col-8">
+                    <button type="submit" class="btn btn-success">Opret</button>
+                </div>
             </div>
         </form>
 
-        <div class="row justify-content-center mt-3">
-            <div class="col-auto">
-                <button type="submit" class="btn btn-success">Opret</button>
-            </div>
-        </div>
 
     </jsp:body>
 
