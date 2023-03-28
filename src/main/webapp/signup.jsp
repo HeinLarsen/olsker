@@ -17,7 +17,7 @@
             <input class= "m_right" type="password" id="password" name="password"/>
         </form>
 
-        <button type="submit" class="btn btn-success item5">Opret</button
+        <button type="submit" class="btn btn-success item5">Opret</button>
 
     </jsp:body>
 
