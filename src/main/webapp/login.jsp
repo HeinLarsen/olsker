@@ -30,7 +30,7 @@
 
 
         <div class="row justify-content-center mt-5">
-            <div class="signup col-auto">
+            <div class="signupKnap col-auto">
                 <p class="d-inline">Du kan oprette dig her:
                     <a href="signup.jsp" class="btn btn-primary mb-2">Opret profil</a>
                 </p>

@@ -150,15 +150,21 @@ form {
 }
 
 .password, email {
-    flex-basis: 0;
     margin-right: 10px;
 }
 
-.signup {
-    margin-right: 0px;
+.signupKnap {
+    align-items: center;
 }
 
 .login {
     margin-top: 1.4%;
 }
+
+.signup {
+    margin-top: 2%;
+    margin-left: 57%;
+}
+
+
 
