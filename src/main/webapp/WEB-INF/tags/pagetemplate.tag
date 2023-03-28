@@ -22,7 +22,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <h1>OLSKER</h1>
             <a class="navbar-brand" href="index.jsp">
@@ -32,7 +32,7 @@
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <c:if test="${sessionScope.user.role == 2}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Items</a>
