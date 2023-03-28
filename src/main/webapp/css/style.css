@@ -1,11 +1,13 @@
 /* CSS stylesheet  for application */
 
-nav {
+
+
+nav{
     background-color: #FFF0DA;
 }
 
 .navbar-brand {
-    margin-left: 14%;
+    margin-left: 0%;
 }
 
 .navbar h1 {
