@@ -52,9 +52,9 @@
 </header>
 
 <div id="body" class="container mt-4 mb-3">
-    <h1>
+    <h2 class="head mb-0">
         <jsp:invoke fragment="header"/>
-    </h1>
+    </h2>
     <jsp:doBody/>
 </div>
 

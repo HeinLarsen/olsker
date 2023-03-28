@@ -9,10 +9,6 @@
          Welcome to the logged in area
     </jsp:attribute>
 
-    <jsp:attribute name="footer">
-        Logged in area
-    </jsp:attribute>
-
     <jsp:body>
 
         <p>You should be logged in now</p>
