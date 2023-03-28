@@ -15,9 +15,10 @@
             <label for="password">Password: </label>
             <input class="m_right" type="text" id="email" name="email"/>
             <input class= "m_right" type="password" id="password" name="password"/>
+            <button type="submit" class="btn btn-success item5">Opret</button>
         </form>
 
-        <button type="submit" class="btn btn-success item5">Opret</button
+
 
     </jsp:body>
 
