@@ -15,9 +15,9 @@
             <div class="col-lg-9 col-12">
                 <form action="addtocart" method="post">
                     <div class="row">
-                        <c:forEach items="${applicationScope.toppingList}" var="topping">
+                        <c:forEach items="${applicationScope.toppingList}" var="topping" varStatus="loop">
                             <div class="col-lg-2 col-md-4 col-6 mb-3">
-                                <input type="radio" name="top" id="tp${topping.name}" value="${topping.id}">
+                                <input type="radio" name="top" id="tp${topping.name}" value="${topping.id}" <c:if test="${loop.first}">checked</c:if>>
                                 <div class="card">
                                     <label for="tp${topping.name}">
                                         <img src="images/topping/${topping.name}.JPG" draggable="false">
@@ -31,9 +31,9 @@
                     </div>
 
                     <div class="row">
-                        <c:forEach items="${applicationScope.bottomList}" var="bottom">
+                        <c:forEach items="${applicationScope.bottomList}" var="bottom" varStatus="loop">
                             <div class="col-lg-2 col-md-4 col-6 mb-3">
-                                <input type="radio" name="bottom" id="bm${bottom.name}" value="${bottom.id}">
+                                <input type="radio" name="bottom" id="bm${bottom.name}" value="${bottom.id}" <c:if test="${loop.first}">checked</c:if>>
 
                                 <div class="card">
 
