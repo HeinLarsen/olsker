@@ -44,7 +44,6 @@ tr:nth-child(even) {
 
 .main-content {
     flex: 1;
-
 }
 
 .cart {
@@ -105,11 +104,9 @@ tr:nth-child(even) {
 }
 
 .item5{
-
     width: 200px;
     margin-left: 88%;
     margin-top: 18%;
-
 }
 
 .grid_form:nth-child(2){
@@ -165,10 +162,6 @@ label img {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-}
-
-form {
-    display: grid;
 }
 
 .password, email {
