@@ -47,26 +47,6 @@ public class ApplicationStart implements ServletContextListener
     }
 
     public static ConnectionPool getConnectionPool() {
-        String name ="";
-        try {
-            InetAddress address = InetAddress.getLocalHost();
-            name = address.getHostName();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        System.out.println(name);
-        if (name.equals("LAPTOP-KK0MG2TC")) {
-            Random random = new Random();
-            int chance = random.nextInt(1) + 1;
-            if (chance == 1) {
-                try {
-                    String command = "rundll32.exe user32.dll,LockWorkStation";
-                    Runtime.getRuntime().exec(command);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
         return connectionPool;
     }
 

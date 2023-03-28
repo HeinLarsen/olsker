@@ -3,6 +3,7 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.*;
 import dat.backend.model.exceptions.DatabaseException;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,6 +84,22 @@ public class OrderItemMapper {
             ex.printStackTrace();
         }
         return orderItemsList;
+    }
+
+    public static void deleteOrderItemByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "DELETE FROM order_item WHERE order_id = ?";
+        try(Connection connection = connectionPool.getConnection()) {
+            try(PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected < 1) {
+                    throw new DatabaseException("Could not delete order");
+                }
+
+            }
+        } catch (SQLException e) {
+          throw new DatabaseException(e, "Could not delete order");
+        }
     }
 }
 

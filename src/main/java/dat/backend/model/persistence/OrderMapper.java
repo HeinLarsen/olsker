@@ -52,7 +52,7 @@ public class OrderMapper {
         }
     }
 
-    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool){
+    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool) {
         String sql = "SELECT `order`.id, `order`.created, `order`.paid, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id where user_id = ?";
         List<Order> orderList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
@@ -76,4 +76,16 @@ public class OrderMapper {
         return orderList;
     }
 
+    public static void deleteOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql ="DELETE FROM `order` WHERE id = ?";
+        try(Connection connection = connectionPool.getConnection()) {
+            try(PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            throw new DatabaseException(ex, "Error deleting order. Something went wrong with the database");
+        }
+    }
 }
