@@ -38,6 +38,10 @@ public class Order extends HttpServlet {
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingcart");
         try {
             int res = Orderfacade.createOrder(user.getId(), connectionPool);
+            if (shoppingCart == null) {
+                response.sendRedirect("index.jsp");
+            } else {
+
             OrderItemFacade.createOrderItems(res, shoppingCart.getOrder(), connectionPool);
             UserFacade.subtractBalance(user, shoppingCart.getTotalPrice(), connectionPool);
             user = UserFacade.login(user.getEmail(), user.getPassword(), connectionPool);
@@ -45,6 +49,7 @@ public class Order extends HttpServlet {
             request.setAttribute("shoppingcart", shoppingCart);
             session.removeAttribute("shoppingcart");
             request.getRequestDispatcher("WEB-INF/receipt.jsp").forward(request, response);
+            }
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());

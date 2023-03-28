@@ -95,6 +95,26 @@ tr:nth-child(even) {
     text-align: right;
 }
 
+.grid_form{
+    display: grid;
+    grid-template-columns: 300px 300px;
+    margin-left: 20%;
+    grid-gap: 20%;
+}
+
+.item5{
+
+    width: 200px;
+    margin-left: 88%;
+    margin-top: 18%;
+
+}
+
+.grid_form:nth-child(2){
+
+    margin-top: 9rem;
+}
+
 input[type=radio] {
     opacity: 0;
 }

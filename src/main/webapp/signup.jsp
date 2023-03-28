@@ -10,7 +10,6 @@
 
     <jsp:body>
 
-
         <form action="signup" method="post">
             <div class="row justify-content-center mt-5">
                 <div class="email col-2">
@@ -26,8 +25,7 @@
                 </div>
             </div>
         </form>
-
-
+        
     </jsp:body>
 
 </t:pagetemplate>
