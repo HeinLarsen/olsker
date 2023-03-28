@@ -164,10 +164,6 @@ label img {
     justify-content: space-evenly;
 }
 
-form {
-    display: grid;
-}
-
 .password, email {
     margin-right: 10px;
 }
