@@ -95,25 +95,6 @@ tr:nth-child(even) {
     text-align: right;
 }
 
-.grid_form {
-    display: grid;
-    grid-template-columns: 300px 300px;
-    margin-left: 20%;
-    grid-gap: 20%;
-}
-
-.item5 {
-    width: 200px;
-    margin-left: 43%;
-    margin-top: 18%;
-
-}
-
-.grid_form:nth-child(2) {
-    margin-top: 9rem;
-    margin-bottom: 5rem;
-}
-
 input[type=radio] {
     opacity: 0;
 }
@@ -164,13 +145,20 @@ label img {
     justify-content: space-evenly;
 }
 
-.login {
-    margin-inline-start: 70%;
+form {
+    display: grid;
+}
+
+.password, email {
+    flex-basis: 0;
+    margin-right: 10px;
 }
 
 .signup {
-    margin: 5%;
-    display: flex;
-    justify-content: center;
+    margin-right: 0px;
+}
+
+.login {
+    margin-top: 1.4%;
 }
 

@@ -10,14 +10,24 @@
 
     <jsp:body>
 
-        <form class="grid_form" action="signup" method="post">
-            <label for="email">Email: </label>
-            <label for="password">Password: </label>
-            <input class="m_right" type="text" id="email" name="email"/>
-            <input class= "m_right" type="password" id="password" name="password"/>
+        <form action="signup" method="post">
+            <div class="row justify-content-center mt-5">
+                <div class="email col-2">
+                    <label for="email">Email: </label>
+                    <input class="m_right" type="text" id="email" name="email"/>
+                </div>
+                <div class="password col-2">
+                    <label for="password">Password: </label>
+                    <input class="m_right" type="password" id="password" name="password"/>
+                </div>
+            </div>
         </form>
 
-        <button type="submit" class="btn btn-success item5">Opret</button>
+        <div class="row justify-content-center mt-3">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Opret</button>
+            </div>
+        </div>
 
     </jsp:body>
 
