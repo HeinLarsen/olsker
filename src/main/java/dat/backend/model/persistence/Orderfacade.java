@@ -16,4 +16,8 @@ public class Orderfacade {
     public static int createOrder(int id, ConnectionPool connectionPool) throws DatabaseException {
         return OrderMapper.createOrder(id, connectionPool);
     }
+
+    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool){
+        return OrderMapper.getAllOrdersByUserId(userId, connectionPool);
+    }
 }

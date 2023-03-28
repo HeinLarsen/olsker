@@ -45,6 +45,10 @@ public class Order {
         return orderItems;
     }
 
+    public void addOrderItemList(List<OrderItem> orderItemList){
+        orderItems.addAll(orderItemList);
+    }
+
     public void addItem(OrderItem orderItem){
         orderItems.add(orderItem);
     }
@@ -63,5 +67,16 @@ public class Order {
             sum += i.getTotalPrice();
         }
         return sum;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", isPaid=" + isPaid +
+                ", created=" + created +
+                ", orderItems=" + orderItems +
+                '}';
     }
 }

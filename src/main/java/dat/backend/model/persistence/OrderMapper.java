@@ -51,5 +51,29 @@ public class OrderMapper {
             throw new DatabaseException(ex, "Error creating order. Something went wrong with the database");
         }
     }
-    // TODO: Create getAllOrdersByUserId method (where user_id = id in user table)
+
+    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool){
+        String sql = "SELECT `order`.id, `order`.created, `order`.paid, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id where user_id = ?";
+        List<Order> orderList = new ArrayList<>();
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, userId);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String email = rs.getString("email");
+                    int role = rs.getInt("role");
+                    double balance = rs.getDouble("balance");
+                    Timestamp created = rs.getTimestamp("created");
+                    boolean isPaid = rs.getBoolean("paid");
+                    Order order = new Order(id, new User(userId, email, role, balance), created, isPaid);
+                    orderList.add(order);
+                }
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return orderList;
+    }
+
 }

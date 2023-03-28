@@ -2,13 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: tobiastonndorff
-  Date: 22/03/2023
-  Time: 09.31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -22,6 +15,7 @@
                 <th>User</th>
                 <th>Order Items</th>
                 <th>Total Price</th>
+                <th>Order Items</th>
 
             </tr>
             <c:forEach items="${requestScope.orderList}" var="order">
@@ -41,6 +35,17 @@
                     <td>
                         <p>${order.totalPrice}kr,-</p>
                     </td>
+                   <td><c:forEach items="${requestScope.orderItemsList}" var="itemsList">
+                      <td><c:forEach items="${itemsList.orderItems}" var="Test">
+
+                    <p>${Test.orderId}</p>
+                    <p>${Test.id}</p>
+                    <p>${Test.top} ${Test.bottom}</p>
+                    <p>${Test.totalPrice}</p>
+                    <p>${Test.quantity}</p>
+                        </c:forEach> </td>
+
+                    </c:forEach> </td>
 
 
                 </tr>
