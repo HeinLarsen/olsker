@@ -7,6 +7,7 @@
 <%@ attribute name="type" type="java.lang.String" required="false" %>
 <%@ attribute name="url" type="java.lang.String" required="false" %>
 <%@ attribute name="btnText" type="java.lang.String" required="false" %>
+<%@ attribute name="showQuantityBtns" type="java.lang.String" required="false" %>
 
 <div class="col-lg-3 col-12">
     <div class="row cart">
@@ -15,11 +16,22 @@
             <hr class="mt-0 mb-0">
         </div>
         <span class="items">
-                    <c:forEach items="${prop.order.orderItems}" var="item">
-                        <div class="col-12 cart-item">
-                            <p class="mb-0">${item.top.name} ${item.quantity} stk. ${item.totalPrice} kr,- </p>
+                    <c:forEach items="${prop.order.orderItems}" var="item" varStatus="loop">
+                        <form>
+                        <div class="col-12 cart-item mt-1">
+                            <input type="hidden" name="itemIndex" value="${loop.index}" />
+                            <p class="mb-0">${item.top.name} ${item.quantity} stk.
+                                <span class="float-end">
+                                ${item.totalPrice} kr,-
+                                    <c:if test="${showQuantityBtns == 'true'}">
+                                        <button type="submit" name="action" formaction="updatequantity" formmethod="post" value="increment" class="btn btn-sm btn-success">+</button>
+                                        <button type="submit" name="action" formaction="updatequantity" formmethod="post" value="decrement" class="btn btn-sm btn-warning">-</button>
+                                    </c:if>
+                                    </span>
+                            </p>
                             <i>med ${item.bottom.name}</i>
                         </div>
+                            </form>
                     </c:forEach>
                         </span>
         <div class="col-12 mt-2 text-center">

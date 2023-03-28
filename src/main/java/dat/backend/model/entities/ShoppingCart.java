@@ -8,7 +8,6 @@ public class ShoppingCart {
     public Order getOrder() {
         return order;
     }
-
     public void addOrder(Order order) {
         this.order = order;
     }
@@ -18,4 +17,5 @@ public class ShoppingCart {
     public double getTotalPrice() {
         return order.getTotalPrice();
     }
+
 }

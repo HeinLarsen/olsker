@@ -8,8 +8,13 @@ nav {
     margin-left: 14%;
 }
 
+.navbar h1 {
+    font-weight: 700;
+}
+
 body {
     background-color: #FFF5E5;
+    font-family: 'Inter', sans-serif;
 }
 
 table {
@@ -91,8 +96,22 @@ tr:nth-child(even) {
 
 .grid_form{
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 300px 300px;
     margin-left: 20%;
+    grid-gap: 20%;
+}
+
+.item5{
+
+    width: 200px;
+    margin-left: 43%;
+    margin-top: 18%;
+
+}
+
+.grid_form:nth-child(2){
+
+    margin-top: 9rem;
 }
 
 input[type=radio] {
@@ -134,4 +153,7 @@ label img {
 }
 
 
+.m_right{
+    margin-right: 4em;
+}
 

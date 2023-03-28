@@ -12,11 +12,11 @@
         <div class="row justify-content-center">
             <h3>Transactions</h3>
         <div class="col-lg-12 col-12">
-            <table class="table" style="width:100%">
+            <table table table-striped table-bordered style="width:100%">
                 <thead>
                 <Tr>
                     <th width="500">Balance</th>
-                    <th>Dato(timestamp?)</th>
+                    <th>Email</th>
 
                 </Tr>
                 </thead>

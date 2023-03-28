@@ -59,7 +59,7 @@
                 </form>
             </div>
 
-            <t:cart url="order" type="get" btnText="Til kassen" prop="${sessionScope.shoppingcart}" showPaymentBtn="true" title="Kurv"/>
+            <t:cart showQuantityBtns="true" url="order" type="get" btnText="Til kassen" prop="${sessionScope.shoppingcart}" showPaymentBtn="true" title="Kurv"/>
 
         </div>
 

@@ -47,4 +47,19 @@ public class OrderItem {
     public double getTotalPrice() {
         return quantity * (top.getPrice() + bottom.getPrice());
     }
+
+    public void setQuantity(int i) {
+        this.quantity = i;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", orderId=" + orderId +
+                ", quantity=" + quantity +
+                ", top=" + top +
+                ", bottom=" + bottom +
+                '}';
+    }
 }
