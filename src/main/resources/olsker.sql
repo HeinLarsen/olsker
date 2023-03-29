@@ -11,7 +11,7 @@ primary key (id)
 drop table if exists `user`;
 create table `user` (
   `id` int NOT NULL auto_increment,
-  `email` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL unique,
   `password` varchar(45) NOT NULL,
   `role` int default 1,
   `balance` float default 0,
