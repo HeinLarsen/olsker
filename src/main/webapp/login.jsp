@@ -11,6 +11,12 @@
 
     <jsp:body>
 
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                ${requestScope.message}
+            </div>
+        </div>
+
 
         <form action="login" method="post">
             <div class="row justify-content-center mt-5">

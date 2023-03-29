@@ -25,7 +25,8 @@ public class Order extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            response.sendRedirect("login.jsp?order=true");
+            request.setAttribute("message", "Du skal være logget ind for at bestille");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("WEB-INF/order.jsp").forward(request, response);
         }

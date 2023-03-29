@@ -28,9 +28,11 @@ public class UpdateBalance extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
-        double balance = Double.parseDouble(request.getParameter("balance"));
+        double balance = u.getBalance();
+        double amount = Double.parseDouble(request.getParameter("balance"));
+        double newBalance = balance + Math.abs(amount);
         try {
-                UserFacade.updateBalance(u.getId(), balance, connectionPool);
+                UserFacade.updateBalance(u.getId(), newBalance, connectionPool);
                 session.setAttribute("user", UserFacade.login(u.getEmail(), u.getPassword(), connectionPool));
                 response.sendRedirect("order");
         } catch (Exception e) {

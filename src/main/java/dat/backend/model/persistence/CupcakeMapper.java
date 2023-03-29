@@ -33,6 +33,7 @@ public class CupcakeMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DatabaseException(e, "Kunne ikke hente cupcake toppings");
         }
         return cupcakeTop;
     }
@@ -57,6 +58,7 @@ public class CupcakeMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DatabaseException(e, "Kunne ikke hente cupcake bottoms");
         }
         return cupcakeBottom;
     }

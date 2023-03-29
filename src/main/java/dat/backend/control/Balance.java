@@ -53,7 +53,7 @@ public class Balance extends HttpServlet {
                 session.setAttribute("user", u);
                 int id = Integer.parseInt(request.getParameter("id"));
                 double amount = Double.parseDouble(request.getParameter("amount"));
-                double newBalance = amount + currentBalance;
+                double newBalance = Math.abs(amount) + currentBalance;
                 UserFacade.updateBalance(id, newBalance, connectionPool);
                 User user = UserFacade.getUserById(userid, connectionPool);
                 request.setAttribute("user", user);

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Orderfacade {
 
-    public static List<Order> showOrders(ConnectionPool connectionpool){
+    public static List<Order> showOrders(ConnectionPool connectionpool) throws DatabaseException{
        return OrderMapper.getAllOrders(connectionpool);
     }
 
@@ -17,7 +17,7 @@ public class Orderfacade {
         return OrderMapper.createOrder(id, connectionPool);
     }
 
-    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool){
+    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool) throws DatabaseException{
         return OrderMapper.getAllOrdersByUserId(userId, connectionPool);
     }
 

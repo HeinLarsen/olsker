@@ -35,15 +35,15 @@
             <div class="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <c:if test="${sessionScope.user.role == 2}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Items</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/users">Users</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/showorders">Order</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/users">Brugere</a>
                     </c:if>
                     <p class="nav-item nav-link">${sessionScope.user.email}</p>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log på</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>

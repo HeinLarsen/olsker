@@ -13,7 +13,7 @@ import java.util.List;
 
 public class OrderItemMapper {
 
-    public static List<OrderItem> getOrderItems(ConnectionPool connectionpool){
+    public static List<OrderItem> getOrderItems(ConnectionPool connectionpool) throws DatabaseException {
         String sql = "SELECT *, cupcake_top.topping, cupcake_top.price, cupcake_bottom.bottom, cupcake_bottom.price FROM olsker.order_item join cupcake_top on cupcake_top_id = cupcake_top.id join cupcake_bottom on cupcake_bottom_id = cupcake_bottom.id";
         List<OrderItem> orderItemList = new ArrayList<>();
         try(Connection connection = connectionpool.getConnection()){
@@ -35,6 +35,7 @@ public class OrderItemMapper {
             }
         } catch (SQLException ex){
             ex.printStackTrace();
+            throw new DatabaseException(ex, "Kunne ikke hente ordre linjer");
         }
         return orderItemList;
     }
@@ -55,10 +56,10 @@ public class OrderItemMapper {
                     }
             }
         } catch(SQLException e) {
-            throw new DatabaseException(e, "Could not create order");
+            throw new DatabaseException(e, "Kunne ikke oprette ordre linjer");
         }
     }
-    public static List<OrderItem> getAllOrderItemsByOrderId(int orderId, ConnectionPool connectionPool){
+    public static List<OrderItem> getAllOrderItemsByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT *, cupcake_top.topping, cupcake_top.price, cupcake_bottom.bottom, cupcake_bottom.price FROM olsker.order_item join cupcake_top on cupcake_top_id = cupcake_top.id join cupcake_bottom on cupcake_bottom_id = cupcake_bottom.id where order_id = ?";
         List<OrderItem> orderItemsList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
@@ -82,6 +83,7 @@ public class OrderItemMapper {
 
         }catch (SQLException ex){
             ex.printStackTrace();
+            throw new DatabaseException(ex, "Kunne ikke hente ordre linjer");
         }
         return orderItemsList;
     }
@@ -93,12 +95,12 @@ public class OrderItemMapper {
                 ps.setInt(1, orderId);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected < 1) {
-                    throw new DatabaseException("Could not delete order");
+                    throw new DatabaseException("Kunne ikke slette ordre");
                 }
 
             }
         } catch (SQLException e) {
-          throw new DatabaseException(e, "Could not delete order");
+          throw new DatabaseException(e, "Kunne ikke slette ordre");
         }
     }
 }

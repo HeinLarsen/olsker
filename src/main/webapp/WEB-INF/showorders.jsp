@@ -5,18 +5,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <t:pagetemplate>
     <jsp:attribute name="header">
-        Customer orders
+        Bruger ordre oversigt
     </jsp:attribute>
     <jsp:body>
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>Order ID</th>
-                <th>User</th>
-                <th>Order Items</th>
-                <th>Total Price</th>
-                <th>Order Items</th>
-                <th>Actions</th>
+                <th>Ordre ID</th>
+                <th>Bruger</th>
+                <th>Order Linjer</th>
+                <th>Total Pris</th>
+                <th>Handlinger</th>
 
             </tr>
             <c:forEach items="${requestScope.orderList}" var="order">
@@ -36,34 +35,15 @@
                     <td>
                         <p>${order.totalPrice}kr,-</p>
                     </td>
-                   <td><c:forEach items="${requestScope.orderItemsList}" var="itemsList">
-                      <td><c:forEach items="${itemsList.orderItems}" var="Test">
-
-                    <p>${Test.orderId}</p>
-                    <p>${Test.id}</p>
-                    <p>${Test.top} ${Test.bottom}</p>
-                    <p>${Test.totalPrice}</p>
-                    <p>${Test.quantity}</p>
-                        </c:forEach> </td>
-
-                    </c:forEach> </td>
                     <td>
                         <form>
                             <input type="hidden" name="id" value="${order.id}">
-                            <button class="btn btn-danger" formaction="deleteorder" formmethod="post">Slet order</button>
+                            <button class="btn btn-danger" formaction="deleteorder" formmethod="post">Slet ordre</button>
                         </form>
                     </td>
 
                 </tr>
             </c:forEach>
-
-
-
-
-
-
-
-
 
             </tr>
             </thead>

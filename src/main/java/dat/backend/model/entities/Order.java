@@ -8,21 +8,18 @@ import java.util.List;
 public class Order {
     private int id;
     private User user;
-    private boolean isPaid;
     private Timestamp created;
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
-    public Order(int id, User user, Timestamp created, boolean isPaid) {
+    public Order(int id, User user, Timestamp created) {
         this.id = id;
         this.user = user;
         this.created = created;
-        this.isPaid = isPaid;
     }
 
     public Order(User user) {
         this.user = user;
-        this.isPaid = false;
     }
 
     public int getId() {
@@ -31,10 +28,6 @@ public class Order {
 
     public User getUser() {
         return user;
-    }
-
-    public boolean isPaid() {
-        return isPaid;
     }
 
     public Timestamp getCreated() {
@@ -74,7 +67,6 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", user=" + user +
-                ", isPaid=" + isPaid +
                 ", created=" + created +
                 ", orderItems=" + orderItems +
                 '}';

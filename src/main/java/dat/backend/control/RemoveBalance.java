@@ -40,7 +40,7 @@ public class RemoveBalance extends HttpServlet
                 session.setAttribute("user", u);
                 int id = Integer.parseInt(request.getParameter("id"));
                 double amount = Double.parseDouble(request.getParameter("amount"));
-                double newbalance = currentBalance - amount;
+                double newbalance = currentBalance - Math.abs(amount);
                 UserFacade.updateBalance(id, newbalance, connectionPool);
                 User user = UserFacade.getUserById(userid, connectionPool);
 

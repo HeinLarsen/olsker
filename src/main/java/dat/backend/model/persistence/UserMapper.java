@@ -33,12 +33,12 @@ class UserMapper
                     user = new User(id, email, password, role, balance);
                 } else
                 {
-                    throw new DatabaseException("Wrong email or password");
+                    throw new DatabaseException("Forkert email eller password");
                 }
             }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
+            throw new DatabaseException(ex, "Fejl ved login. Noget gik galt med databasen");
         }
         return user;
     }
@@ -55,13 +55,13 @@ class UserMapper
                 ps.setString(2, password);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 0) {
-                    throw new DatabaseException("The user with email = " + email + " could not be inserted into the database");
+                    throw new DatabaseException("Brugeren med email = " + email + " Kunne ikke blive tilføjet til databasen");
                 }
             }
         } catch (SQLException ex)
         {
             ex.printStackTrace();
-            throw new DatabaseException(ex, "Could not insert email into database");
+            throw new DatabaseException(ex, "Kunne ikke indsætte bruger i databasen");
         }
     }
 
@@ -88,7 +88,7 @@ class UserMapper
             }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not get all users from database");
+            throw new DatabaseException(ex, "Kunne ikke hente brugere fra databasen");
         }
         return users;
     }
@@ -110,17 +110,17 @@ class UserMapper
 
                 } else
                 {
-                    throw new DatabaseException("The balance for user with id = " + id + " does not exist and could not be updated");
+                    throw new DatabaseException("Balancen for brugeren med id = " + id + " eksisterer ikke og kunne ikke blive opdateret");
                 }
             }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not update balance in database");
+            throw new DatabaseException(ex, "Kunne ikke opdatere balancen i databasen");
         }
         return user;
     }
 
-    public static User getUserById(int id, ConnectionPool connectionPool) {
+    public static User getUserById(int id, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
 
@@ -138,6 +138,8 @@ class UserMapper
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException(ex, "Kunne ikke hente bruger fra databasen");
+
         }
         return user;
     }
@@ -153,12 +155,12 @@ class UserMapper
                 ps.setInt(2, u.getId());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected != 1) {
-                    throw new DatabaseException("The balance for user with id = " + u.getId() + " does not exist and could not be updated");
+                    throw new DatabaseException("Balancen for brugeren med id = " + u.getId() + " eksisterer ikke og kunne ikke blive opdateret");
                 }
             }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not update balance in database");
+            throw new DatabaseException(ex, "Kunne ikke opdatere balancen i databasen");
         }
     }
 }

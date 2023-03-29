@@ -11,8 +11,8 @@ import java.util.List;
 
 public class OrderMapper {
 
-    public static List<Order> getAllOrders(ConnectionPool connectionPool){
-        String sql = "SELECT `order`.id, `order`.created, `order`.paid, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id";
+    public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT `order`.id, `order`.created,`order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id";
         List<Order> orderList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
@@ -24,13 +24,13 @@ public class OrderMapper {
                     int role = rs.getInt("role");
                     double balance = rs.getDouble("balance");
                     Timestamp created = rs.getTimestamp("created");
-                    boolean isPaid = rs.getBoolean("paid");
-                    Order order = new Order(id, new User(userId, email, role, balance), created, isPaid);
+                    Order order = new Order(id, new User(userId, email, role, balance), created);
                     orderList.add(order);
                 }
             }
         } catch (SQLException ex){
             ex.printStackTrace();
+            throw new DatabaseException(ex, "Fejl ved hentning af ordre. Noget gik galt med databasen");
         }
         return orderList;
     }
@@ -48,12 +48,12 @@ public class OrderMapper {
             }
         } catch (SQLException ex){
             ex.printStackTrace();
-            throw new DatabaseException(ex, "Error creating order. Something went wrong with the database");
+            throw new DatabaseException(ex, "Fejl ved oprettelse af ordre. Noget gik galt med databasen");
         }
     }
 
-    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool) {
-        String sql = "SELECT `order`.id, `order`.created, `order`.paid, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id where user_id = ?";
+    public static List<Order> getAllOrdersByUserId(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT `order`.id, `order`.created, `order`.user_id, user.email, user.role, user.balance FROM `order` left join `user` on `order`.user_id = `user`.id where user_id = ?";
         List<Order> orderList = new ArrayList<>();
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
@@ -65,13 +65,13 @@ public class OrderMapper {
                     int role = rs.getInt("role");
                     double balance = rs.getDouble("balance");
                     Timestamp created = rs.getTimestamp("created");
-                    boolean isPaid = rs.getBoolean("paid");
-                    Order order = new Order(id, new User(userId, email, role, balance), created, isPaid);
+                    Order order = new Order(id, new User(userId, email, role, balance), created);
                     orderList.add(order);
                 }
             }
         } catch (SQLException ex){
             ex.printStackTrace();
+            throw new DatabaseException(ex, "Fejl ved hentning af ordre. Noget gik galt med databasen");
         }
         return orderList;
     }
@@ -85,7 +85,7 @@ public class OrderMapper {
             }
         } catch (SQLException ex){
             ex.printStackTrace();
-            throw new DatabaseException(ex, "Error deleting order. Something went wrong with the database");
+            throw new DatabaseException(ex, "Fejl ved sletning af odre. Noget gik galt med databasen");
         }
     }
 }
