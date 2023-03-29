@@ -22,11 +22,11 @@
             <div class="row justify-content-center mt-5">
                 <div class="email col-2">
                     <label for="email">Email: </label>
-                    <input type="text" id="email" name="email"/>
+                    <input class="form-control" type="text" id="email" name="email"/>
                 </div>
                 <div class="password col-2">
                     <label for="password">Password: </label>
-                    <input type="password" id="password" name="password"/>
+                    <input class="form-control" type="password" id="password" name="password"/>
                 </div>
                 <div class="login col-auto">
                     <input type="submit" class="btn btn-primary mb-2" value="Log in"/>
